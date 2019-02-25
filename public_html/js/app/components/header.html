@@ -1,0 +1,189 @@
+
+<head>
+    <link href="./css/flickity.css" rel="stylesheet" type="text/css"/>
+    <script src="https://unpkg.com/flickity@2.2.0/dist/flickity.pkgd.min.js"></script>    
+    <script src="js/myjs/carrousel.js" type="text/javascript"></script>
+    <link href="./css/carrousel.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/comic.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/vista.css" rel="stylesheet" type="text/css"/>
+    <script src="js/myjs/myjavasrc.js" type="text/javascript"></script>
+</head>
+
+<div id="header" class="bg-dark ">
+    <nav class="navbar navbar-expand-md navbar-light bg-dark">
+        <a class="navbar-brand" href="home"> <i class="fab fa-optin-monster"></i> ONCOMICS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--            <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">INICIO <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">COMICS <span class="sr-only">(current)</span></a>
+                            </li>
+            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    GÉNERO
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Bélico</a>
+                                    <a class="dropdown-item" href="#">Ciencia Ficción</a>
+                                    <a class="dropdown-item" href="#">Erótico</a>
+                                    <a class="dropdown-item" href="#">Fantasía y Aventura</a>
+                                    <a class="dropdown-item" href="#">Humor</a>
+                                    <a class="dropdown-item" href="#">Infantil</a>
+                                    <a class="dropdown-item" href="#">Serie Negra o Detectivesca</a>
+                                    <a class="dropdown-item" href="#">Sobrenatural y Paranormal</a>
+                                    <a class="dropdown-item" href="#">SuperHéroes</a>
+                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a> 
+                                </div>
+                            </li>
+                        </ul>-->
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ng-class="{'active': c.isActive('/home')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH" >
+                    <a class="nav-link hvr-pop" href="home"><i class="fa fa-home"></i> 
+                        <span class="desaparece"> Inicio</span><span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" ng-class="{'active': c.isActive('/user/comic')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH" >
+                    <a class="nav-link hvr-pop" href="user/comic/plist"><i class="fa fa-book-open"></i> 
+                        <span class="desaparece"> Comics</span><span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item"  ng-show="c.isAdmin && c.loginH" ng-class="{'active': c.isActive('/usuario/plist')}">
+                    <a class="nav-link hvr-pop" href="usuario/plist" 
+                       ng-class="{'active': (c.isActive('/usuario/plist') || c.isActive('/usuario/view') || c.isActive('/usuario/edit') || c.isActive('/usuario/remove')
+                       || c.isActive('/usuario/create') || c.isActive('/factura/newfacturauser'))}">
+                        <i class="fa fa-users"></i> <span class="desaparece">Usuarios</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/tipousuario/plist')}">
+                    <a class="nav-link hvr-pop" href="tipousuario/plist"
+                       ng-class="{'active': (c.isActive('/tipousuario/plist') || c.isActive('/tipousuario/view') || c.isActive('/tipousuario/edit') || c.isActive('/tipousuario/remove')
+                       || c.isActive('/tipousuario/create'))}">
+                        <i class="fa fa-user"></i> <span class="desaparece">Tipo Usuario</span>
+                    </a>
+                </li>
+
+
+
+                <!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/comic')}">                        
+                                    <a class="nav-link hvr-pop" href="comic/plist" >
+                                        <i class="fas fa-book-open"></i> <span class="desaparece">Comics</span>
+                                    </a>
+                                </li>-->
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-link hvr-pop"   ng-show="c.isAdmin && c.loginH" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" ng-class="{'active': c.isActive('/comic') || c.isActive('/genero') || c.isActive('/editorial')
+                       || c.isActive('/idioma')}">
+                        <i class="fas fa-book-open"></i> <span class="desaparece"> Comics </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="comic/plist">Lista de comics</a>
+                        <a class="dropdown-item"  href="genero/plist">Lista de géneros</a>                        
+                        <a class="dropdown-item"  href="editorial/plist">Lista de editorial</a>                        
+                        <a class="dropdown-item"  href="idioma/plist">Lista de idiomas</a>        
+                    </div>
+                </li>
+
+
+                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/coleccion')}">                        
+                    <a class="nav-link hvr-pop" href="coleccion/plist">                    
+                        <i class="fas fa-book-reader"></i> <span class="desaparece">Colecciones</span>
+                    </a>
+                </li>
+
+                <!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/editorial')}">                        
+                                    <a class="nav-link hvr-pop" href="editorial/plist">                    
+                                        <i class="fas fa-book"></i> <span class="desaparece">Editoriales</span>
+                                    </a>
+                                </li>-->
+
+                <!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/idioma')}">                        
+                                    <a class="nav-link hvr-pop" href="idioma/plist">                    
+                                        <i class="fas fa-globe"></i> <span class="desaparece">Idiomas</span>
+                                    </a>
+                                </li>-->
+
+
+
+                <!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/genero')}">                        
+                                    <a class="nav-link hvr-pop" href="genero/plist">                    
+                                        <i class="fas fa-bookmark"></i> <span class="desaparece">Géneros</span>
+                                    </a>
+                                </li>-->
+
+                <!--                <li class="nav-item"  ng-show="c.isAdmin && c.loginH"  ng-class="{'active': c.isActive('/autor')}">                        
+                                    <a class="nav-link hvr-pop" href="autor/plist" >
+                                        <i class="fas fa-user-tie"></i> <span class="desaparece">Autores</span>
+                                    </a>
+                                </li>-->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-link hvr-pop"  ng-show="c.isAdmin && c.loginH" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" ng-class="{'active': c.isActive('/autor') || c.isActive('/especialidad')}">
+                        <i class="fas fa-user-tie"></i> <span class="desaparece"> Autores </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="autor/plist">Lista de autores</a>
+                        <a class="dropdown-item"  href="especialidad/plist">Lista de especialidades</a>                           
+                    </div>
+                </li>
+
+                <li class="nav-item" ng-show="c.isAdmin && c.loginH" ng-class="{'active': c.isActive('/factura')}">
+                    <a class="nav-link hvr-pop" href="factura/plist">
+                        <i class="fa fa-file-invoice-dollar"></i> <span class="desaparece">Facturas</span>
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item" ng-if="c.idTipoUsuario === 2 && c.loginH" ng-class="{'active': c.isActive('/user/usuario/plistfactura')}">
+                    <a class="nav-link hvr-pop" href="user/usuario/plistfactura/{{c.usuariologeadoID}}">
+                        <i class="fas fa-hand-holding-usd"></i> <span class="desaparece"> Mis Facturas </span> </a>
+                </li>
+
+            </ul>
+
+            <a href="carrito/plist"><button ng-if="c.idTipoUsuario !== 1" class="btn btn-warning hvr-wobble-horizontal" style="margin-right: 10px;"> <i class="fa fa-shopping-cart"> <span ng-show="c.carrito > 0">{{c.carrito}}</span></i></button></a>                         
+
+            <div ng-show="!c.loginH">
+                <a href="login"><button type="button" class="btn btn-danger"><i class="fas fa-sign-in-alt"> Login</i></button></a>
+            </div>            
+            <div ng-show="c.loginH">                                   
+<!--                <a href="usuario/view/{{c.usuariologeadoID}}"><button type="button" ng-if="c.idTipoUsuario === 1" class="btn btn-info"><i class="fa fa-user-circle"> Bienvenido/a <strong style="color: black;">{{c.usuariologeado}}</strong> </i></button></a>            
+                <a href="user/usuario/view/{{c.usuariologeadoID}}"><button type="button" ng-if="c.idTipoUsuario === 2" class="btn btn-info"><i class="fa fa-user-circle"> Bienvenido/a <strong style="color: black;">{{c.usuariologeado}}</strong> </i></button></a>            
+                <a href="/logout" > <button type="button" class="btn btn-primary" style="width:auto"> <i class="fas fa-sign-out-alt"> </i></button></a>-->
+
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Bienvenido/a <strong style="color: black;">{{c.usuariologeado}}</strong>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="usuario/view/{{c.usuariologeadoID}}" ng-if="c.idTipoUsuario === 1"><i class="fa fa-user-circle"> Perfil </i></a>
+                        <a class="dropdown-item" href="user/usuario/view/{{c.usuariologeadoID}}" ng-if="c.idTipoUsuario === 2"><i class="fa fa-user-circle"> Perfil</i></a>
+                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="logout"> <i class="fas fa-sign-out-alt"> </i> Salir</a>                        
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </nav>
+
+</div>

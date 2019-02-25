@@ -1,0 +1,40 @@
+<header-component></header-component>
+<main role="main" class="container">
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+
+    <form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
+        <h3 style="text-align: center"><i class="fas fa-user-tie"></i> Crear Autor</h3>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="nombre" class="col-form-label">Nombre</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="nombre" name="nombre"
+                       ng-model="nombre" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/"
+                       placeholder="Dime un nombre"
+                       ng-class="{ 'is-invalid' : userForm.nombre.$invalid && !userForm.nombre.$pristine, 'is-valid': userForm.nombre.$valid && !userForm.nombre.$pristine}"/>
+                <div ng-show="userForm.nombre.$error.pattern" class="alert alert-danger" role="alert">
+                    Nombre no válido
+                </div>
+
+                <div ng-show="userForm.nombre.$invalid && !userForm.nombre.$pristine && !userForm.nombre.$error.pattern" class="alert alert-danger" role="alert">
+                    Nombre obligatorio
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <button ng-click="guardar()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>   
+            </div>
+            <div class="col-5">                           
+            </div>            
+        </div>
+    </form>
+    <div class="alert alert-success" ng-show="mensaje">
+        Se ha creado el {{ob}} con el id {{idCreado}} llamado "{{nombre}}"
+    </div>
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

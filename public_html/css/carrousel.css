@@ -1,0 +1,156 @@
+
+.heading-primary {
+  font-size: 2em;
+  padding: 2em;
+  text-align: center;  
+}
+
+
+
+.accordion dd,
+.accordion__panel {  
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+.accordion p {
+  padding: 1em 2em 1em 2em;
+}
+
+.accordion {
+  position: relative;
+  
+}
+
+
+.accordionTitle,
+.accordion__Heading {
+  /* background: linear-gradient(to right, rgba(76,76,76,1) 0%, rgba(0,0,0,1) 0%, rgba(97,96,97,1) 0%, rgba(102,102,102,1) 1%, rgba(0,0,0,1) 1%, rgba(51,50,51,1) 50%, rgba(48,47,48,1) 57%, rgba(26,26,26,1) 100%); */
+  background: #08080C;
+
+  /* background: url("../comicProyect/imagenes/logo.png");
+  background-repeat: no-repeat;  
+  background-position: right center; */
+  text-align: center;
+  font-weight: 700;
+  padding: 1.2em;
+  display: block;
+  text-decoration: none;
+  color: lightgreen;
+  transition: background-color 0.5s ease-in-out;
+  border-bottom: 1px solid #40A07D;  
+  border-radius: 5px;
+}
+.accordionTitle:before,
+.accordion__Heading:before {
+  content: "I";
+  font-size: 1.5em;
+  line-height: 0.5em;
+  float: left;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+.accordionTitle:hover,
+.accordion__Heading:hover {
+  background-color: #40A07D;
+  text-decoration: none;
+}
+
+.accordionTitleActive,
+.accordionTitle.is-expanded {
+  background-color: black;
+}
+.accordionTitleActive:before,
+.accordionTitle.is-expanded:before {
+  -webkit-transform: rotate(-225deg);
+          transform: rotate(-270deg);
+}
+
+.accordionItem {
+  height: auto;
+  overflow: hidden;
+  max-height: 50em;
+  transition: max-height 1s;
+  background: white;
+  border-radius: 2px;
+  
+}
+@media screen and (min-width: 48em) {
+  .accordionItem {
+    max-height: 100em;
+    transition: max-height 0.5s;
+  }
+}
+
+.accordionItem.is-collapsed {
+  max-height: 0;
+}
+
+.no-js .accordionItem.is-collapsed {
+  max-height: auto;
+}
+
+.animateIn {
+  -webkit-animation: accordionIn 0.45s normal ease-in-out both 1;
+          animation: accordionIn 0.45s normal ease-in-out both 1;
+}
+
+.animateOut {
+  -webkit-animation: accordionOut 0.45s alternate ease-in-out both 1;
+          animation: accordionOut 0.45s alternate ease-in-out both 1;
+}
+
+@-webkit-keyframes accordionIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes accordionIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@-webkit-keyframes accordionOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+  }
+}
+@keyframes accordionOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(0.9) rotateX(-60deg);
+            transform: scale(0.9) rotateX(-60deg);
+  }
+}

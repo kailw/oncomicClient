@@ -1,0 +1,37 @@
+<header-component></header-component>
+<div class="container-fluid">
+    <div class="row MUpBot">        
+        <main role="main" class="col-md-12 col-lg-12">
+            <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 20px;">Volver</button> </a> 
+            <div class="d-flex justify-content-between flex-wrap aligpt-3 pb-2 mb-3 border-bottom"> 
+                <h1 class="h2"> <i class="fa fa-user"></i>  
+                    <!--                    <a href="user/usuario/view/{{ajaxDatoLineaFactura[0].obj_Factura.obj_Usuario.id}}"> {{ajaxDatoLineaFactura[0].obj_Factura.obj_Usuario.nombre}}  {{ajaxDatoLineaFactura[0].obj_Factura.obj_Usuario.ape1}}</a> - Lineas de la Factura Nº{{id}}</h1>-->
+                    Lineas de la Factura Nº{{id}}</h1>
+            </div>
+        </main>
+
+    </div>
+
+
+
+    <div class="row" style="margin-top: 25px;">
+        <div class="col-12">
+            <table class="table table-hover table-sm" style="text-align: center;">
+
+                <tr  class="thead-dark">
+                    <th>Cantidad</th>
+                    <th>Título</th>
+                    <th>Descripción</th>                    
+
+                </tr>                
+                <tr ng-repeat="fila in ajaxDatoLineaFactura track by $index">
+                    <td>{{fila.cantidad}}</td>
+                    <td>{{fila.obj_Comic.titulo}}</td>      
+                    <td>{{fila.obj_Comic.desc}}</td>                                                              
+                </tr>
+
+            </table>
+        </div>
+    </div>    
+</div>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

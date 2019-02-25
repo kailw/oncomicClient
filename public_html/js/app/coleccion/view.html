@@ -1,0 +1,30 @@
+<header-component></header-component>
+<main role="main" class="container">    
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    <table class="table table-striped table-hover table-bordered">        
+        <caption><i class="fas fa-book-reader"></i> View de Colección</caption>
+        <tr>
+            <th>ID</th>
+            <th>{{ajaxDataColeccion.id}}</th>
+        </tr>   
+        <tr>
+            <th>DESCRIPCIÓN</th>
+            <td>{{ajaxDataColeccion.desc}}</td>
+        </tr>     
+        <tr>
+            <th  style="margin: 30px">COMICS QUE PERTENECEN A ESTA COLECCIÓN</th>
+            <td ng-if="ajaxDatoComic[0].id >= 1">
+                <span class="padTabla"
+                      ng-repeat="fila in ajaxDatoComic track by $index">
+                    <a href="comic/view/{{fila.id}}"> {{fila.titulo}}</a>                    
+                </span>
+            </td>
+            <td ng-if="ajaxDatoComic <= 0">
+                <a href="comic/create"> No hay ningún comic en esta colección</a>         
+            </td>
+        </tr>   
+    </table>
+
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

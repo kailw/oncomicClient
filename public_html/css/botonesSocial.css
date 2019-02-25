@@ -1,0 +1,44 @@
+.social {
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    z-index: 7;
+}
+
+.socialLista {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.socialLista li a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    transition: all 500ms ease;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.socialLista li .icon-facebook2 {
+    background: #3b5998;
+}
+
+.socialLista li .icon-twitter {
+    background: #00abf0;
+}
+
+.socialLista li .icon-google-plus {
+    background: #d95232;
+}
+
+.socialLista li .icon-instagram {
+    background: #e4405f;
+}
+
+.socialLista li a:hover {
+    padding: 10px 23px;
+    background: black;
+}

@@ -1,0 +1,28 @@
+<header-component></header-component>
+<main role="main" class="container">
+
+    <!--    <h3>Resultado de la llamada AJAX: {{ajaxData}}</h3>-->
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    <table class="table table-striped table-hover table-bordered">        
+        <caption><i class="fa fa-file-invoice-dollar"></i> View de Factura</caption>
+        <tr>
+            <th>ID</th>
+            <th>{{ajaxDatoFactura.id}}</th>
+        </tr>   
+        <tr>
+            <th>Fecha</th>
+            <td>{{ajaxDatoFactura.fecha}}</td>
+        </tr>
+        <tr>
+            <th>IVA</th>
+            <td>{{ajaxDatoFactura.iva}}</td>        
+        </tr>
+        <tr>
+            <th>Usuario</th>
+            <td><a href="usuario/view/{{ajaxDatoFactura.obj_Usuario.id}}">{{ajaxDatoFactura.obj_Usuario.nombre}} {{ajaxDatoFactura.obj_Usuario.ape1}} {{ajaxDatoFactura.obj_Usuario.ape2}}</a></td>             
+        </tr>
+
+    </table>   
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

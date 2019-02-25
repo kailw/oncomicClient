@@ -1,0 +1,81 @@
+<header-component></header-component>
+<div class="container-fluid"  ng-if="facturaVacia">
+    <div class="row MUpBot">
+        <div class="col-sm-6 col-md-7">
+            <h1 class="h2"> <i class="fa fa-user"></i> Usuario: <a href="user/usuario/view/{{ajaxDatosUsuarios.id}}"> {{ajaxDatosUsuarios.nombre}} {{ajaxDatosUsuarios.ape1}}</a></h1>
+        </div>
+        <div class="col-sm-auto col-md-auto ml-auto align-self-center">
+            Selecciona RPP:
+        </div>
+        <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
+            <select class="form-control" 
+                    ng-change="update()" 
+                    ng-model="rpp" ng-options="value for value in select" >
+            </select>
+        </div>
+    </div> 
+
+
+    <div class="table-responsive tablacentro">
+        <table class="table table-striped table-sm" style="text-align: center;">
+            <thead>
+                <tr class="thead-dark"> 
+                    <th>Fecha</th>
+                    <th>IVA</th>                        
+                    <th>Lineas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tr class="thead-dark">
+                <th id="colorNegroborder">                    
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('fecha', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('fecha', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>                         
+                </th>
+                <th id="colorNegroborder">                
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('iva', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('iva', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>                  
+                </th>
+                <th id="colorNegroborder">
+                </th>
+                <th id="colorNegroborder">
+                </th>    
+
+            </tr>
+            <tbody>
+                <tr ng-repeat="fila in ajaxDataUsuarios track by $index">
+                    <td>{{fila.fecha}}</td>
+                    <td>{{fila.iva}}</td>                                                
+                    <td>
+                        <a href="user/factura/plistlinea/{{fila.id}}/10/1" class="btn table-warning" ng-if="fila.numLinea >= 1">
+                            <i>{{fila.numLinea}}</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="user/factura/view/{{fila.id}}">
+                            <button style="font-size:15px" class="btn btn-info"><i class="fa fa-eye"></i></button>
+                        </a>
+
+                        <a ng-click="pdf(fila.id, fila.fecha, fila.iva, fila.obj_Usuario)" class="btn btn-primary"  ng-class="{'disabled': {{fila.numLinea}} <= 0}">
+                            <i class="fa fa-print" style="color: black"></i>
+                        </a>
+                    </td>                        
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div ng-if="!facturaVacia" class="row justify-content-center" style="margin-top: 70px;">        
+    <div class="alert alert-primary col-5" style="text-align: center">
+        No tienes ninguna factura. Compra!!! <a href="user/comic/plist" class="badge badge-primary"> VER LISTA DE PRODUCTOS </a>
+    </div>
+</div>   
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

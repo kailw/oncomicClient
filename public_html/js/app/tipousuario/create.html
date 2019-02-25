@@ -1,0 +1,48 @@
+<header-component></header-component>
+<main role="main" class="container">
+
+    <!--    <h3>Resultado de la llamada AJAX: {{ajaxData}}</h3>-->
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    
+    <form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
+        <h3 style="text-align: center"> <i class="fa fa-user"></i> Crear Tipo Usuario</h3>
+<!--        <div class="form-group row">            
+            <label for="id" class="col-2 col-form-label">ID</label>
+            <div class="col-8">
+                <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
+            </div>
+        </div>-->
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+            <label for="descripcion" class="col-form-label">Descripción</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="descripcion" name="descripcion"
+                       ng-model="desc" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/"
+                       placeholder="Dime un descripcion"
+                       ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid': userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
+                <div ng-show="userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
+                    Descripcion no válida
+                </div>
+                
+                <div ng-show="userForm.descripcion.$invalid && !userForm.descripcion.$pristine && !userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
+                    Descripción obligatoria
+                </div>
+            </div>
+        </div>
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <button ng-click="guardar()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>   
+            </div>
+            <div class="col-5">                           
+            </div>            
+        </div>
+
+    </form>
+    <div class="alert alert-success" ng-show="mensaje">
+        Se ha creado el {{ob}} con el id {{idCreado}} llamado "{{desc}}"
+    </div>
+</main>
+<!--<footer class="footer" ng-include="'js/app/footer.html'"></footer>-->

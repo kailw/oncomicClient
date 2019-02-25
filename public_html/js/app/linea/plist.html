@@ -1,0 +1,87 @@
+<header-component></header-component>
+<div class="container-fluid">
+    <div class="row">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-4" style="margin-top: 50px">
+            <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2"> <i class="fa fa-file-invoice"></i> Linea</h1>
+<!--                <div class="btn-group" style="width:400px;">
+                    <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
+                    <select class="form-control" 
+                            ng-change="update()" 
+                            ng-model="rpp" ng-options="value for value in select">
+                    </select>
+                </div>-->
+            </div>
+        </main>
+    </div>
+    <div class="row">
+        <div class="col-9">
+
+        </div>
+        <div class="col-3">
+            <button type="button" class="btn btn-danger btn-sm" style="width: auto; height:30px;" ng-click="resetOrder()">
+                <i class="fa fa-broom"> Limpiar</i>
+            </button>
+            <a  href="{{ob}}/create/"> 
+                <button type="button" class="btn btn-warning btn-sm" style="width: 100px; height:30px;">
+                    <i class="fa fa-plus"> Crear</i>
+                </button>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <tr class="thead-dark">
+                <th>
+                    ID
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>
+                </th>
+                <th>
+                    Cantidad
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('cantidad', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>
+                </th>
+                <th>
+                    Producto
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_producto', 'asc')">
+                        <a class="fas fa-long-arrow-alt-up" ></a>
+
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_producto', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>
+                </th>
+                <th>
+                    Tipo Factura
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_factura', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id_factura', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>
+                </th>               
+                <th>
+                    Acciones                
+                </th>
+            </tr>
+            <tr ng-repeat="fila in ajaxDataLineas">
+                <td>{{fila.id}}</td>
+                <td>{{fila.cantidad}}</td>
+                <td><a href="producto/view/{{fila.obj_Producto.id}}">{{fila.obj_Producto.desc}}</a></td>
+                <td>{{fila.obj_Factura.id}}</td>                                           
+            </tr>
+        </table>
+    </div>
+</div>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

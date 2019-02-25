@@ -1,0 +1,42 @@
+<header-component></header-component>
+<main role="main" class="container">
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+
+    <form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
+        <h3 style="text-align: center">
+            <i class="fas fa-chalkboard-teacher"></i>
+            Crear Especialidad</h3>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="descripcion" class="col-form-label">Descripción</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="descripcion" name="descripcion"
+                       ng-model="desc" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/"
+                       placeholder="Dime una descripción"
+                       ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid': userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
+                <div ng-show="userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
+                    Descripción no válida
+                </div>
+
+                <div ng-show="userForm.descripcion.$invalid && !userForm.descripcion.$pristine && !userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
+                    Descripción obligatoria
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <button ng-click="guardar()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Crear</button>   
+            </div>
+            <div class="col-5">                           
+            </div>            
+        </div>
+    </form>
+    <div class="alert alert-success" ng-show="mensaje">
+        Se ha creado el {{ob}} con el id {{idCreado}} llamado "{{desc}}"
+    </div>
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

@@ -1,0 +1,74 @@
+<header-component></header-component>
+<main role="main" class="container" style="margin-bottom: 100px;">
+
+    <!--    <h3>Resultado de la llamada AJAX: {{ajaxData}}</h3>-->
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success">Volver</button> </a>    
+    <form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
+        <h3 style="text-align: center"><i class="fa fa-file-invoice"></i>  Editar Linea</h3>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="id" class="col-form-label">ID</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control-plaintext" id="id" name="id" ng-disabled="true" ng-model="ajaxDatoLinea.id" />
+            </div>                
+        </div>   
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="cantidad" class="col-form-label">Cantidad</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control" id="cantidad" name="cantidad" ng-model="ajaxDatoLinea.cantidad"
+                       ng-required="true"  ng-pattern="/^[0-9][0-9]*$/" ng-class="{ 'is-invalid' : userForm.cantidad.$invalid && !userForm.cantidad.$pristine, 'is-valid': userForm.cantidad.$valid && !userForm.cantidad.$pristine}"/>
+                <div ng-show="userForm.cantidad.$error.pattern" class="alert alert-danger" role="alert">
+                    Cantidad no valida
+                </div>
+                <div ng-show="userForm.cantidad.$invalid && !userForm.cantidad.$pristine && !userForm.cantidad.$error.pattern" class="alert alert-danger" role="alert">
+                    Cantidad obligatorio
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="id_producto" class="col-form-label">Tipo Producto</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control " id="id_producto" name="id_producto" ng-model="ajaxDatoLinea.obj_Producto.id" ng-required="true" />
+                <div ng-show="!userForm.id_producto.$valid" class="alert alert-danger" role="alert">
+                    Producto obligatorio
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <label for="id_factura" class="col-form-label">Id Factura</label>
+            </div>
+            <div class="col-5">
+                <input type="text" class="form-control-plaintext" id="id_factura" name="id_factura" ng-model="ajaxDatoLinea.obj_Factura.id" ng-required="true" disabled/>                                                   
+                <div ng-show="!userForm.id_factura.$valid" class="alert alert-danger" role="alert">
+                    Factura obligatorio
+                </div>                
+            </div>
+        </div>  
+        
+        
+        <div class="form-group row justify-content-center">
+            <div class="col-2">
+                <button ng-click="guardar()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Guardar</button>   
+            </div>
+            <div class="col-5">                           
+            </div>            
+        </div>
+    </form>
+
+    <div class="alert alert-success" ng-show="mensaje">
+        Datos actualizados correctamente del {{ob}} {{ajaxDatoLinea.id}}
+    </div>
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

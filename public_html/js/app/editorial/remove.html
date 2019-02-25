@@ -1,0 +1,35 @@
+<header-component></header-component>
+<main role="main" class="container" style="margin-bottom: 100px;">
+
+    <!--    <h3>Resultado de la llamada AJAX: {{ajaxData}}</h3>-->
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    <div ng-show="tabla">
+        <table class="table table-striped table-hover table-bordered">        
+            <caption><i class="fas fa-book"></i> Editorial remove</caption>
+            <tr>
+                <th>ID</th>
+                <th>{{ajaxDatoEditorial.id}}</th>
+            </tr>   
+            <tr>
+                <th>DESCRIPCIÓN</th>
+                <td>{{ajaxDatoEditorial.desc}}</td>
+            </tr>  
+        </table>
+    </div>
+    <div ng-show="mensaje3">
+        <h3>Estas seguro de eliminar el registro {{ajaxDatoEditorial.id}} </h3>
+        <button class="btn btn-primary" ng-click="eliminar('eliminar')"><i class="fas fa-check"></i></button>
+        <button class="btn btn-danger" ng-click="eliminar('noeliminar')"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="alert alert-success" style="margin-top: 20px;" ng-show="mensaje">
+        El registro se ha eliminado
+    </div>
+
+    <div class="alert alert-danger" style="margin-top: 20px;" ng-show="mensaje2">
+        El registro no se ha eliminado
+    </div>
+
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

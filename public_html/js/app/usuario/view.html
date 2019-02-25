@@ -1,0 +1,47 @@
+<header-component></header-component>
+<main role="main" class="container">
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    <table class="table table-striped table-hover table-bordered">        
+        <caption> <i class="fa fa-user"></i> View de usuario</caption>
+        <tr>
+            <th>ID</th>
+            <th>{{ajaxDatoUsuario.id}}</th>
+        </tr>   
+        <tr>
+            <th>DNI</th>
+            <td>{{ajaxDatoUsuario.dni}}</td>
+        </tr>
+        <tr>
+            <th>NOMBRE</th>
+            <td>{{ajaxDatoUsuario.nombre}}</td>        
+        </tr>
+        <tr>
+            <th>PRIMER APELLIDO</th>
+            <td>{{ajaxDatoUsuario.ape1}}</td>
+        </tr>
+        <tr>
+            <th>SEGUNDO APELLIDO</th>
+            <td>{{ajaxDatoUsuario.ape2}}</td>
+        </tr>
+        <tr>
+            <th>LOGIN</th>
+            <td>{{ajaxDatoUsuario.login}}</td>
+        </tr>
+        <tr>
+            <th>VALIDACIÓN</th>
+            <td>{{ajaxDatoUsuario.validacion ? "Sí" : "No"}}</td>
+        </tr>
+        <tr>
+            <th>EMAIL</th>
+            <td>{{ajaxDatoUsuario.email}}</td>
+        </tr>
+        <tr>
+            <th>TIPO DE USUARIO</th>      
+            <td>
+                <a href="tipousuario/view/{{ajaxDatoUsuario.obj_tipoUsuario.id}}">{{ajaxDatoUsuario.obj_tipoUsuario.desc}}</a>
+            </td> 
+        </tr>      
+    </table>   
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

@@ -1,0 +1,79 @@
+<header-component></header-component>
+<div class="container-fluid">
+    <div class="row MUpBot">        
+        <main role="main" class="col-md-12 col-lg-12">
+            <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 20px;">Volver</button> </a> 
+            <div class="d-flex justify-content-between flex-wrap aligpt-3 pb-2 mb-3"> 
+                <h1 class="h2"> <i class="fa fa-user"></i>
+                    <!--                    <a href="usuario/view/{{ajaxDatoLineaFactura[0].obj_Factura.obj_Usuario.id}}"> {{ajaxDatoLineaFactura[0].obj_Factura.obj_Usuario.nombre}}  {{ajaxDatoLineaFactura[0].obj_Factura.obj_Usuario.ape1}}</a> - Lineas de la Factura Nº{{id}}</h1>-->
+                    Lineas de la Factura Nº{{id}}</h1>
+            </div>
+        </main>
+
+    </div>
+
+
+    <div class="row justify-content-between">
+        <div class="col-md-auto col-8">
+            <!--            <nav aria-label="paginacion">
+                            <ul class="pagination">
+            
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page > 1" href="factura/plistlinea/{{id}}/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Anterior</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page > 2" href="factura/plistlinea/{{id}}/{{rpp}}/1/{{orderURLCliente}}">1</a>
+                                </li>
+                                <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                                    <a class="page-link" href="factura/plistlinea/{{id}}/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="factura/plistlinea/{{id}}/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" ng-show="page != totalPages" href="factura/plistlinea/{{id}}/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Siguiente</a>
+                                </li>
+            
+                            </ul>
+                        </nav>-->
+        </div>
+        <!--        <div class="col-md-auto col-3">
+                    <a  href="linea/create/{{idFactura}}"> 
+                        <button type="button" class="btn btn-warning btn-sm" style="width: 100px; height:30px;">
+                            <i class="fa fa-plus"> Crear</i>
+                        </button>
+                    </a>
+                </div>-->
+    </div>
+
+
+    <div class="row" style="margin-top: 25px;">
+        <div class="col-12">
+            <table class="table table-hover table-sm" style="text-align: center;">
+
+                <tr  class="thead-dark">
+                    <th>Id</th>
+                    <th>Cantidad</th>
+                    <th>Título</th>                    
+                    <th>ISBN</th>
+                    <th>Páginas</th>
+                    <th>Acciones</th>
+                </tr>                
+                <tr ng-repeat="fila in ajaxDatoLineaFactura track by $index">
+                    <th>{{fila.id}}</th>
+                    <td>{{fila.cantidad}}</td>
+                    <td><a href="comic/view/{{fila.obj_Comic.id}}">{{fila.obj_Comic.titulo}}</a></td>                    
+                    <td>{{fila.obj_Comic.isbn}}</td>                       
+                    <td>{{fila.obj_Comic.pagina}}</td>
+                    <td> 
+                        <a  href="linea/view/{{fila.id}}"> 
+                            <button style="font-size:15px" class="btn btn-info"><i class="fa fa-eye"></i></button>
+                        </a> 
+                    </td> 
+                </tr>
+
+            </table>
+        </div>
+    </div>    
+</div>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

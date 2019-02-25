@@ -1,0 +1,147 @@
+.alineacion {
+    text-align: center;
+}
+
+.primeraParte, terceraParte{
+    margin-top: 6%;    
+    margin-bot: 1.2%;    
+}
+.segundaParte {
+    margin-top: 30px;
+}
+
+.primeraPartev{
+    margin-top: 25px;    
+
+}
+.mensaje {
+    margin:15px;
+}
+.tablacentro {
+    text-align: center;
+}
+
+
+#colorNegroborder {
+    border-top:  1px solid rgb(33,37,41);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,210px));     
+    grid-auto-rows: 500px;
+    grid-gap: 50px 10%;
+    padding: 10px;    
+    justify-content: center;    
+}
+
+.grid-item {        
+    display: grid;
+    grid-template-rows: 67% 15% 10% 8%;    
+}
+
+.grid-item:hover {
+    transform: scale(1.07);
+    transition: transform 0.2s linear;
+}
+
+
+
+.grid-contenido {
+    align-self: center;
+}
+
+
+
+/*.noExistencias {
+    background: url('../images/agotado.jpg');   
+    background-repeat: no-repeat;        
+    background-size: 300px 200px;
+    background-position: left top;                    
+}*/
+
+/* ONCOMICS MODIFICACIONES*/
+.NDecoration {
+    text-decoration: none !important;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.MUpBot {
+    margin: 1.8% 0;
+}
+
+.padTabla {
+    padding: 0 0 2% 0 !important;
+    display: block !important;
+}
+
+.botonEditar {
+    display: inline-block !important;
+    width: 50% !important;
+}
+
+.iconoEditar {
+    margin-left: 2%;
+}
+
+
+.desactivado {
+    opacity: 0.7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+.md-checkbox.md-default-theme:not([disabled]).md-primary:not(.md-checked) .md-icon, md-checkbox:not([disabled]).md-primary:not(.md-checked) .md-icon{
+    border: 1px solid  #ced4da !important;    
+}
+
+md-checkbox.md-default-theme:not([disabled]).md-primary.md-checked .md-icon, md-checkbox:not([disabled]).md-primary.md-checked .md-icon {
+    background: #66C595;
+}
+
+
+
+.selectdemoSelectHeader .demo-header-searchbox {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    padding: 0; }
+.selectdemoSelectHeader .demo-select-header {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
+    padding-left: 10.667px;
+    height: 48px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: auto; }
+.selectdemoSelectHeader md-content._md {
+    max-height: 240px; }
+
+
+
+
+
+
+@media (max-width: 760px){
+    .desaparece {        
+
+
+    }
+}
+
+@media (max-width: 1200px){
+    .desaparece {        
+        visibility: hidden;
+        display: none;
+
+    }
+}
+

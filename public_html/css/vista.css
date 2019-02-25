@@ -1,0 +1,123 @@
+#contenidoVista {
+    grid-area: CONTENIDO;
+    margin: 0 8%;
+    display: grid;    
+    grid-template-rows: auto auto;
+    grid-template-areas: "VISTA" "INTERES"; 
+    row-gap: 110px;       
+}
+
+
+#vista {
+    grid-area: "VISTA";    
+    display: grid;
+    grid-template-columns: 1fr 3.5fr;
+    column-gap: 30px;        
+}
+
+.portadaVista {
+    /* border:5px outset black;
+    /* width: 90%;
+    background: yellow;
+    background: url("imagenes/destacado2.jpg");
+    background-size: cover;        
+    background-position: center;
+    margin-left: 5%;
+    height: 400px; */ 
+    grid-area: "PORTADAVISTA"
+}
+
+.todoVista {
+    display: grid;
+    grid-template-rows: 0.1fr auto auto 0.09fr;                 
+}
+
+
+
+#interes {
+    grid-area: "INTERES";        
+}
+
+
+
+.portadaTitulo {
+    /* background-color: green; */
+    width: 100%;
+    grid-area: "PORTADATITULO";
+    padding: 10px;
+    color:red;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.portadaDescripcion {
+    /* background-color: green; */
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: justify;
+
+}
+
+.preciV{    
+    grid-area: "PRECIOV";
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.cestV{     
+    background: red;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    transform: skew(-6deg);
+    color:white;
+}
+
+.cestV:hover {
+    background: #0053BA;
+    transition: all 500ms ease;
+    cursor: pointer;
+}
+
+
+
+
+.recomendados {
+    background: black;
+    padding: 10px;
+    color:white;
+    font-size: 20px;
+}
+
+
+
+
+
+@media (max-width:1071px) {
+
+    #vista {
+        grid-template-columns: 1fr ;
+        grid-template-rows: 400px 500px ;
+    }
+    .portadaVista {           
+        background: none;
+        background-size: contain;        
+        background-position: center;
+        background-repeat: no-repeat;
+        border:0;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .portadaTitulo{
+        margin-top: 10px;
+    }
+
+    .todoVista {
+        display: grid;
+        grid-template-rows: 0.1fr 0.9fr 0.1fr 0.09fr;                 
+    }
+
+    
+}

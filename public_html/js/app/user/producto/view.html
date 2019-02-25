@@ -1,0 +1,39 @@
+<header-component></header-component>
+<main role="main" class="container">
+
+    <!--    <h3>Resultado de la llamada AJAX: {{ajaxData}}</h3>-->
+    <div class="primeraParte"></div>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    <table class="table table-striped table-hover table-bordered">        
+        <caption> <i class="fa fa-box-open"></i> View de producto</caption>
+        <tr>
+            <th>ID</th>
+            <th>{{ajaxDatoProducto.id}}</th>
+        </tr>   
+        <tr>
+            <th>Codigo</th>
+            <td>{{ajaxDatoProducto.codigo}}</td>
+        </tr>
+        <tr>
+            <th>Descripción</th>
+            <td>{{ajaxDatoProducto.desc}}</td>        
+        </tr>
+        <tr>
+            <th>Existencias</th>
+            <td>{{ajaxDatoProducto.existencias}}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>{{ajaxDatoProducto.precio}}</td>
+        </tr>
+        <tr>
+            <th>Foto</th>
+            <td>{{ajaxDatoProducto.foto}} <a target="_blank" href="http://localhost:8081/images/{{ajaxDatoProducto.foto}}"> <img id="output" src="images/{{ajaxDatoProducto.foto}}" alt="default" style="width: 60px; height: 50px;"/></a></td>            
+        </tr>
+        <tr>
+            <th>Tipo Producto</th>      
+        <td><a href="tipoproducto/view/{{ajaxDatoProducto.obj_tipoProducto.id}}">{{ajaxDatoProducto.obj_tipoProducto.desc}}</a></td>
+        </tr>      
+    </table>
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

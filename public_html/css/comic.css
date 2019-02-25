@@ -1,0 +1,395 @@
+* {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/****************** MAIN ********************/
+
+body {
+    height: 100%;    
+}
+
+#main {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr 0.1fr;    
+    grid-template-areas: "HEADER" "CONTENIDO" "FOOTER";
+    /*    background-color: #42403F;*/
+    row-gap: 50px;
+}
+
+#header {
+    grid-area: HEADER;
+    /* background-color: #424442; */
+    font-size: 1.1em;
+}
+
+#contenido {
+    grid-area: CONTENIDO;
+    margin: 0 4%;
+    display: grid;
+    grid-gap: 60px;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: "CARROUSEL" "COMICS" "INFORMACION";
+}
+
+#footer {
+    grid-area: FOOTER;
+    /* margin-top: 8%; */
+}
+
+/****************** CONTENIDO ********************/
+
+/****** CARROUSEL *******/
+
+#carrousel {
+    grid-area: CARROUSEL;
+    height: 100%;
+}
+
+/* todos los carrouseles tengan un margen */
+
+.carousel {
+    margin: 20px;
+}
+
+/* imagenes del primer carrousel */
+
+/* .entrada1 {
+   background: url("../images/entrada1.jpg");
+   background-size: cover;
+   background-position: center center;
+   border-radius: 5px;
+   border: 4px outset black;
+} 
+
+.entrada2 {
+   background: url("../images/entrada2.jpg");
+   background-size: 80%;
+   border-radius: 5px;
+   background-position: 0 50%;
+   border: 4px outset black;
+}
+
+.entrada3 {
+   background: url("../images/entrada3.jpg");
+   background-size: cover;
+   background-position: center;
+   border-radius: 5px;
+   border: 4px outset black;
+}
+
+.entrada4 {
+   background: url("../images/entrada4.jpg");
+   background-size: cover;
+   background-position: center;
+   border-radius: 5px;
+   border: 4px outset black;
+}
+
+.entrada5 {
+   background: url("../images/entrada5.jpg");
+   background-size: cover;
+   background-position: center;
+   border-radius: 5px;
+   border: 4px outset black;
+}  */
+
+/* external css: flickity.css del primer carrousel */
+
+.gallery {
+    z-index: 1;
+
+}
+
+.gallery-cell-principal {
+    width: 80%;
+    margin: 0 0.5%;
+}
+
+.imagenCarrousel1 {
+    border: 4px outset black;
+    opacity: 0.9;
+}
+
+/****** COMICS *******/
+
+#comic {
+    grid-area: COMICS;
+}
+
+/* esta clase la comparte el comic destacado, mas vendidos*/
+
+.carousel-cell {
+    display: grid;
+    grid-template-rows: 67% 15% 10% 8%;
+    grid-template-columns: 100%;
+    width: 200px;
+    height: 440px;
+    margin: 0 1.7%;
+}
+
+/* imagenes de los comics mas destacados */
+
+/*.portada1 {
+    background: url("../images/destacado1.jpg");
+    background-size: cover;
+    background-position: top center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}*/
+
+.portada2 {
+    background: url("../images/destacado2.jpg");
+    background-size: cover;
+    background-position: top center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portada3 {
+    background: url("../images/destacado3.jpg");
+    background-size: cover;
+    background-position: top center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portada4 {
+    background: url("../images/destacado4.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portada5 {
+    background: url("../images/destacado5.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portada6 {
+    background: url("../images/destacado6.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portada7 {
+    background: url("../images/destacado7.jpg");
+    background-size: cover;
+    background-position: top center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portada8 {
+    background: url("../images/destacado8.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+/*// imagenes de los comic mas vendidos*/
+
+.portadaV1 {
+    background: url("../images/vendidos1.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portadaV2 {
+    background: url("../images/vendidos2.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portadaV3 {
+    background: url("../images/vendidos3.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portadaV4 {
+    background: url("../images/vendidos4.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+.portadaV5 {
+    background: url("../images/vendidos5.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 2px outset black;
+    box-shadow: 4px 3px 2px #2F3031;
+}
+
+/* el boton que aperece cuando pasas por encima de un comic */
+
+div[class*="vistaCuadrado"] {
+    background: green;
+    color: white;
+    display: grid;
+    justify-content: center;
+    margin: 20% 18% 0%;
+    padding: 10px;
+    border-radius: 2px;
+    opacity: 0;
+    text-align: center; /* cuando se hace para movil el titulo no entra en cuadrado y no se centra pero con justify content deberia centrarse peo no lo hace*/
+}
+
+/*div[class*="cesta"] {
+    background: #ED1410;    
+    text-align: center;
+    color: white;
+    padding: 4px 0;
+    cursor: pointer;
+    transform: skew(-6deg);
+}
+.cesta:hover {
+    background: green;
+}*/
+
+
+.portada:hover .vistaCuadrado1 {
+    opacity: 1;
+    cursor: pointer;
+    transition: all 190ms linear;
+}
+
+
+
+.portada2:hover .vistaCuadrado2 {
+    opacity: 1;
+    cursor: pointer;
+    transition: all 190ms linear;
+}
+
+/* el titulo este centrado de cada comic*/
+
+div[class*="titulo"] {
+    align-self: center;
+
+}
+
+/* descuentos comics*/
+
+.carousel-cell2 {
+    display: grid;
+    grid-template-rows: 67% 15% 10% 8%;
+    width: 200px;
+    height: 440px;
+    margin: 0 1.7%;
+}
+
+/* para hacer el precio tachado del descuento*/
+
+.pp {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+div[class*="precio"] {
+    align-self: center;
+}
+
+#informacion {
+    grid-area: INFORMACION;
+}
+
+.ui-autocomplete {
+    list-style-type: none;
+    background-color: lightgray;
+    border-radius: 5px;
+    width: 8%;
+    cursor: pointer;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+
+#busqueda {   
+    display: grid;
+    grid-template-columns: 1fr 3fr;        
+
+}
+
+
+
+
+
+/* MEDIA QUERIES*/
+
+@media (max-width:1110px) {
+    /* .navbar {
+        margin: 0!important;
+        ;
+    } */
+    /* .socialLista li a {
+        padding: 10px 8px;
+    }
+    .socialLista li a:hover {
+        padding: 10px 20px;
+        background: black;
+    } */
+    /* #main {
+        display: grid;
+        grid-template-rows: auto 1fr 320px;
+        grid-template-areas: "LINEA" "CONTENIDO" "FOOTER";
+    } */
+    .social {
+        display: none;
+    }
+}
+
+@media (max-width:700px) {
+    #carrousel {
+        display: none;
+    }
+
+
+    #main {
+        grid-template-rows: auto auto auto;       
+    }
+
+    #contenido {
+        grid-template-rows: auto 0.5fr;
+        grid-template-areas: "COMICS" "INFORMACION";
+
+    }
+
+    #footer {
+        font-size: 80%;
+    }    
+}
+
+@media (max-width:500px) {
+    .carousel-cell {
+        /* grid-template-rows: 0.8fr 0.15fr 0.10fr 0.08fr; */
+        width: 170px;
+        height: 380px;
+        margin: 0 1.7%;
+    }
+    .carousel-cell2 {
+        width: 170px;
+        height: 380px;
+        margin: 0 1.7%;
+    }
+
+
+
+}

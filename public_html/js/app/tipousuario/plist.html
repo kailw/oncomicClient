@@ -1,0 +1,97 @@
+<header-component></header-component>
+<div class="container-fluid">
+    <div class="row MUpBot">
+        <div class="col-sm-6 col-md-4">
+            <h1 class="h2"><i class="fa fa-user"></i> Tipo Usuario</h1>
+        </div>
+        <div class="col-sm-auto col-md-auto ml-auto align-self-center">
+            Selecciona RPP:
+        </div>
+        <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
+            <select class="form-control" 
+                    ng-change="update()" 
+                    ng-model="rpp" ng-options="value for value in select" >
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-12 col-sm-7 col-md-auto">
+            <nav aria-label="paginacion">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                        <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Next</a>
+                    </li>                    
+                </ul>
+            </nav>
+        </div>
+        <div class="col-12 col-sm-5 col-md-auto">    
+            <button type="button" class="btn btn-danger btn-sm" style="width: auto; height:30px;" ng-click="resetOrder()">
+                <i class="fa fa-broom"> Limpiar</i>
+            </button>
+            <a  href="{{ob}}/create/"> 
+                <button type="button" class="btn btn-warning btn-sm" style="width: 100px; height:30px;">
+                    <i class="fa fa-plus"> Crear</i>
+                </button>
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm tablacentro">
+            <tr class="thead-dark">
+                <th>
+                    ID
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('id', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>
+                </th>
+                <th>
+                    Descripción
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'asc')">
+                        <i class="fas fa-long-arrow-alt-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="ordena('desc', 'desc')">
+                        <i class="fas fa-long-arrow-alt-down"></i>
+                    </button>
+                </th>                
+
+                <th>
+                    Acciones                
+                </th>
+            </tr>
+            <tr ng-repeat="fila in ajaxDataTipousuarios">
+                <td>{{fila.id}}</td>
+                <td>{{fila.desc}}</td>            
+                <td> 
+                    <a  href="{{ob}}/view/{{fila.id}}"> 
+                        <button style="font-size:15px" class="btn btn-info"><i class="fa fa-eye"></i></button>
+                    </a> 
+                    <a  href="{{ob}}/edit/{{fila.id}}"> 
+                        <button style="font-size:15px" class="btn btn-success"><i class="fa fa-edit"></i></button>
+                    </a> 
+                    <a  href="{{ob}}/remove/{{fila.id}}"> 
+                        <button style="font-size:15px" class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
+                    </a> 
+                </td>                                  
+            </tr>
+        </table>
+    </div>
+</div>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

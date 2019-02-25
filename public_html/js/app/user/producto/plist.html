@@ -1,0 +1,95 @@
+<header-component></header-component>
+
+
+<div>BUSQUEDA</div>
+
+<div class="container-fluid">            
+    <div class="row" style="margin-top: 80px;margin-bottom: 20px;">
+        <div class="col-sm-6 col-md-4">
+            <h1 class="h2"><i class="fa fa-box-open"></i> Productos</h1>
+        </div>
+        <div class="col-sm-auto col-md-auto ml-auto align-self-center">
+            Selecciona RPP:
+        </div>
+        <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
+            <select class="form-control" 
+                    ng-change="update()" 
+                    ng-model="rpp" ng-options="value for value in select" >
+            </select>
+        </div>
+    </div>            
+    <div class="row justify-content-between">
+        <div class="col-12 col-sm-7 col-md-auto">
+            <nav aria-label="paginacion">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 1" href="user/{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 2" href="user/{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                        <a class="page-link" href="user/{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Next</a>
+                    </li>                    
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-12 col-sm-5 col-md-auto">            
+            <button type="button" class="btn btn-danger btn-sm" style="width: auto; height:30px;" ng-click="resetOrder()">
+                <i class="fa fa-broom"> Limpiar</i>
+            </button>                      
+        </div>
+    </div>    
+    
+    <div class="grid-container">
+        <div class="grid-item" ng-repeat="fila in ajaxDataProductos" style="text-align: center;">
+            <div class="grid-contenido"  ng-class="{'noExistencias': fila.existencias == 0 }"> 
+                <img ng-src="images/{{fila.foto}}" style="width: 250px; height: 180px;border-radius: 10%;" alt=""/>
+            </div>
+
+            <div class="grid-contenido">
+                {{fila.desc}}                
+            </div>
+
+            <div class="grid-contenido">                         
+                <i style="font-weight: bold;color:red;"> {{fila.precio.toFixed(2)}} $ </i>                
+                <a class="btn btn-warning" ng-click="add(fila.id)" ng-class="{'disabled': fila.existencias == 0 }" style="margin-left: 10px;">
+                    <i class="fas fa-cart-plus" > Añadir a la cesta</i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-between" style="margin-top: 30px">
+        <div class="col-12 col-sm-7 col-md-auto">
+            <nav aria-label="paginacion">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                        <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Next</a>
+                    </li>                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>

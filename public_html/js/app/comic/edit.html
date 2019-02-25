@@ -1,0 +1,276 @@
+<header-component></header-component>
+<main role="main" class="container" style="margin-bottom: 100px;">
+    <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 40%" ng-if="!cargando">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>    
+
+    <div class="primeraParte" ng-if="cargando">
+        <a href="javascript:window.history.back();"> <button class="btn btn-success">Volver</button> </a>    
+        <ng-form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
+            <h3 style="text-align: center"> <i class="fas fa-book-open"></i>  Editar comic</h3>
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="id" class="col-form-label">ID</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control-plaintext" id="id" name="id" ng-disabled="true" ng-model="ajaxDatoComic.id" />
+                </div>                
+            </div>   
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="titulo" class="col-form-label">Titulo</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="titulo" name="titulo" ng-model="ajaxDatoComic.titulo" ng-required="true"
+                           ng-class="{ 'is-invalid' : userForm.titulo.$invalid && !userForm.titulo.$pristine, 'is-valid': userForm.titulo.$valid && !userForm.titulo.$pristine}"/>                       
+                    <div ng-show="userForm.titulo.$invalid && !userForm.titulo.$pristine" class="alert alert-danger" >Titulo requerido.</div>
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="descripcion" class="col-form-label">Descripción</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control " id="descripcion" name="descripcion" ng-model="ajaxDatoComic.desc" ng-required="true"
+                           ng-class="{ 'is-invalid' : userForm.descripcion.$invalid && !userForm.descripcion.$pristine, 'is-valid': userForm.descripcion.$valid && !userForm.descripcion.$pristine}"/>
+                    <div ng-show="!userForm.descripcion.$valid && !userForm.descripcion.$pristine && !userForm.descripcion.$error.pattern" class="alert alert-danger" role="alert">
+                        Descripcion obligatoria
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="fechapublicacion" class="col-form-label">Fecha Publicación</label>
+                </div>
+                <div class="col-5">
+                    <md-datepicker ng-model="dt" id="fechapublicacion" name="fechapublicacion" md-placeholder="Fecha publicación"></md-datepicker>
+                </div>                        
+            </div>
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="isbn" class="col-form-label">ISBN</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="isbn" name="isbn" ng-model="ajaxDatoComic.isbn" ng-required="true"
+                           ng-class="{ 'is-invalid' : userForm.isbn.$invalid && !userForm.isbn.$pristine, 'is-valid': userForm.isbn.$valid && !userForm.isbn.$pristine}"/>                       
+                    <div ng-show="userForm.isbn.$invalid && !userForm.isbn.$pristine" class="alert alert-danger" >ISBN requerido.</div>
+                </div>
+            </div>
+
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <!--                <label for="genero" class="col-form-label">Géneros</label>-->
+                </div>          
+                <div class="col-5">
+                    <md-input-container>
+                        <label>Géneros</label>
+                        <md-select style="max-width: 250px" ng-model="seleccionarGenero" ng-change="cambiar('genero')" data-md-container-class="selectdemoSelectHeader " multiple="" ng-required="true"  md-on-close="clearSearchTerm()" >
+                            <md-select-header class="demo-select-header">
+                                <input  type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text" ng-model="generos" onkeydown="event.stopPropagation()">
+                            </md-select-header>
+                            <md-optgroup label="generos" id="gener">
+                                <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoGenero| filter:generos">{{fila.desc}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>   
+                </div>
+            </div>
+
+
+
+            <div class="form-group row justify-content-center"  ng-repeat="fila in ajaxArrayAutorEspecial track by $index">  
+                <div class="col-2 align-self-center">
+                    <button type="button" class="btn btn-light" ng-click="otroInput()"  ng-if="$index < 1"> <i class="fas fa-plus-circle"></i></button>
+                    <button type="button" class="btn btn-light" ng-click="quitarInput($index)" ng-if="$index > 0"> <i class="fas fa-minus-circle"></i></button>
+                </div>
+
+                <div class="col-5">
+                    <md-input-container style="margin-right: 20px;">
+                        <label>Autores</label>
+                        <md-select   ng-change="cambiar('autor')" style="max-width: 250px" ng-model="seleccionarAutor[$index]" data-md-container-class="selectdemoSelectHeader" ng-required="true">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="autor1" type="text" placeholder="Busca su autor" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                            </md-select-header>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutor| orderBy: 'nombre' | filter:autor1">{{fila.nombre}}</md-option>
+                        </md-select>                    
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label>Especialidades</label>
+                        <md-select   ng-change="cambiar('autor')" ng-required ="true" style="max-width: 250px" ng-model="seleccionarEspecialidad[$index]" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="especialidad1" type="search" placeholder="Busca su especialidad" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
+                            </md-select-header>
+                            <md-optgroup label="especialidad">
+                                <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoAutorEspecialidad| orderBy: 'desc' | filter:especialidad1">{{fila.desc}}</md-option>
+                            </md-optgroup>
+                        </md-select>                    
+                    </md-input-container>               
+                </div>
+            </div>  
+
+
+
+            <div class="form-group row justify-content-center">   
+                <div class="col-2">
+                </div>
+                <div class="col-5">
+                    <md-input-container style="margin-right: 120px; width: 30%;">
+                        <label>Editoriales</label>
+                        <md-select  ng-required="true" style="max-width: 280px" ng-model="seleccionarEditorial" data-md-container-class="selectdemoSelectHeader" >
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="editorial" type="text" placeholder="Busca su editorial" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                            </md-select-header>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoEditorial| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
+                        </md-select>                    
+                    </md-input-container>
+                </div>
+            </div>   
+
+            <div class="form-group row justify-content-center">   
+                <div class="col-2">
+                </div>
+                <div class="col-5">
+                    <md-input-container>
+                        <label>Idiomas</label>
+                        <md-select  ng-change="cambiar('idioma')" ng-required="true" style="max-width: 250px" ng-model="seleccionarIdioma" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="">
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="idioma" type="search" placeholder="Busca su idioma" class="demo-header-searchbox md-text" onkeydown="event.stopPropagation()">
+                            </md-select-header>
+                            <md-optgroup label="idioma">
+                                <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoIdioma| orderBy: 'desc' | filter:idioma" >{{fila.desc}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>                
+                </div>
+            </div>   
+
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="paginas" class="col-form-label">Páginas</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="paginas" name="paginas" ng-model="ajaxDatoComic.pagina" 
+                           ng-required="true"  ng-pattern="/^[0-9][0-9]*$/" ng-class="{ 'is-invalid' : userForm.paginas.$invalid && !userForm.paginas.$pristine, 'is-valid': userForm.paginas.$valid && !userForm.paginas.$pristine}"/>
+                    <div ng-show="userForm.paginas.$invalid && !userForm.paginas.$pristine && !userForm.paginas.$error.pattern" class="alert alert-danger" role="alert">
+                        Paginas obligatorio
+                    </div>
+                    <div ng-show="userForm.paginas.$error.pattern" class="alert alert-danger" role="alert">
+                        Formato de página no válido
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="color" class="col-form-label">Color</label>
+                </div>
+                <div class="col-5">
+                    <md-checkbox  ng-model="ajaxDatoComic.color"  aria-label="color"  class="md-primary" style="margin-top: 6px">           
+                    </md-checkbox>
+                </div>
+            </div>
+
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="existencias" class="col-form-label">Existencias</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="existencias" name="existencias" ng-model="ajaxDatoComic.existencias" 
+                           ng-required="true"  ng-pattern="/^[0-9][0-9]*$/" ng-class="{ 'is-invalid' : userForm.existencias.$invalid && !userForm.existencias.$pristine, 'is-valid': userForm.existencias.$valid && !userForm.existencias.$pristine}"/>
+                    <div ng-show="userForm.existencias.$invalid && !userForm.existencias.$pristine && !userForm.existencias.$error.pattern" class="alert alert-danger" role="alert">
+                        Existencias obligatorio
+                    </div>
+                    <div ng-show="userForm.existencias.$error.pattern" class="alert alert-danger" role="alert">
+                        Existencias no válido
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="precio" class="col-form-label">Precio</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control" id="precio" name="precio" ng-model="ajaxDatoComic.precio" ng-required="true" ng-pattern="/^[0-9]+([.][0-9])?[0-9]*$/"
+                           ng-pattern="/^[0-9][0-9]*$/" ng-class="{ 'is-invalid' : userForm.precio.$invalid && !userForm.precio.$pristine, 'is-valid': userForm.precio.$valid && !userForm.precio.$pristine}"/>
+                    <div ng-show="!userForm.precio.$valid && !userForm.precio.$pristine && !userForm.precio.$error.pattern" class="alert alert-danger" role="alert">
+                        Precio obligatorio
+                    </div>
+                    <div ng-show="userForm.precio.$error.pattern" class="alert alert-danger" role="alert">
+                        Precio no valido (nota: los decimales se separan con '.', no con ',')
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="foto" class="col-form-label">Imagen</label>
+                </div>
+                <div class="col-5">
+                    <input type="file" name="file" class="form-control-file" id="file" file-model="file" ng-model="foto" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"/>
+                    <img id="output" src="images/{{ajaxDatoComic.foto}}" alt="default" style="width: 60px; height: 80px;"/>                
+                </div>          
+
+            </div>
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <label for="destacado" class="col-form-label">Destacado</label>
+                </div>
+                <div class="col-5">
+                    <md-checkbox  ng-model="ajaxDatoComic.destacado"  aria-label="destacado"  class="md-primary" style="margin-top: 6px">           
+                    </md-checkbox>
+                </div>
+            </div>
+
+
+            <div class="form-group row justify-content-center">   
+                <div class="col-2" style="margin-top: 16px">
+                    <label for="coleccion" class="col-form-label">Colección</label>
+                </div>
+                <div class="col-5">
+                    <md-input-container style="margin-right: 120px; width: 50%;">
+                        <label>Colección</label>
+                        <md-select ng-model="seleccionarColeccion" data-md-container-class="selectdemoSelectHeader" >
+                            <md-select-header class="demo-select-header">
+                                <input ng-model="editorial" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                            </md-select-header>
+                            <md-option ng-value="0">Ninguna</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoColeccion| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
+                        </md-select>                    
+                    </md-input-container>
+                </div>
+            </div> 
+
+
+
+
+
+            <div class="form-group row justify-content-center">
+                <div class="col-2">
+                    <button ng-click="guardar()" type="button" class="btn btn-primary" ng-disabled="userForm.$invalid">Guardar</button>   
+                </div>
+                <div class="col-5">                           
+                </div>            
+            </div>
+
+
+
+        </ng-form>    
+        <div class="alert alert-success" ng-show="mensaje">
+            Datos actualizados correctamente del {{ob}} {{ajaxDatoComic.id}}
+        </div>
+    </div>
+</main>
+<footer class="footer" ng-include="'js/app/footer.html'"></footer>
