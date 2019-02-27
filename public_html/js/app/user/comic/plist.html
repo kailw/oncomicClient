@@ -1,126 +1,125 @@
 <header-component></header-component>
 
-<div id="busqueda">
+<!-- <div id="busqueda">
     <div class="container-fluid MUpBot">
-        <h1 class="md-title" >BÚSQUEDA</h1>
+        <h1 class="md-title">BÚSQUEDA</h1>
         <div class="col-5">
             <md-input-container>
                 <label>Géneros</label>
-                <md-select style="max-width: 250px" ng-model="seleccionarGenero" data-md-container-class="selectdemoSelectHeader " multiple="" >
+                <md-select style="max-width: 250px" ng-model="seleccionarGenero" data-md-container-class="selectdemoSelectHeader "
+                    multiple="">
                     <md-select-header class="demo-select-header">
-                        <input  type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text" ng-model="generos" onkeydown="event.stopPropagation()">
+                        <input type="text" placeholder="Busca su género" class="demo-header-searchbox _md-text"
+                            ng-model="generos" onkeydown="event.stopPropagation()">
                     </md-select-header>
                     <md-optgroup label="generos">
-                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicGenero| orderBy: 'desc' | filter:generos " ng-required="true">{{fila.desc}}</md-option>
+                        <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicGenero| orderBy: 'desc' | filter:generos "
+                            ng-required="true">{{fila.desc}}</md-option>
                     </md-optgroup>
                 </md-select>
             </md-input-container>
         </div>
+    </div> -->
+
+<div class="container-fluid">
+    <div class="row MUpBot">
+        <div class="col-sm-6 col-md-4">
+            <h1 class="h2"><i class="fa fa-book-open"></i> Comics</h1>
+        </div>
+
+        <div class="col-5">
+            <md-autocomplete md-selected-item="selectedItem" md-search-text="comic" md-items="item in ajaxDataProductosTodos | filter:comic"
+                md-item-text="item.titulo" placeholder="Busca tu cómic !">
+                <md-item-template>
+                    <span md-highlight-text="comic">{{item.titulo}}</span>
+                </md-item-template>
+                <md-not-found>
+                    No se encontrado el cómic "{{comic}} {{selectedItem}}"".
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+
+
+        <div class="col-sm-auto col-md-auto ml-auto align-self-center">
+            Selecciona RPP:
+        </div>
+        <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
+            <select class="form-control" ng-change="update()" ng-model="rpp" ng-options="value for value in select">
+            </select>
+        </div>
     </div>
 
-    <div class="container-fluid">            
-        <div class="row MUpBot">
-            <div class="col-sm-6 col-md-4">
-                <h1 class="h2"><i class="fa fa-book-open"></i> Comics</h1>
-            </div>
-            <div class="col-sm-auto col-md-auto ml-auto align-self-center">
-                Selecciona RPP:
-            </div>
-            <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
-                <select class="form-control" 
-                        ng-change="update()" 
-                        ng-model="rpp" ng-options="value for value in select" >
-                </select>
-            </div>
-        </div>            
-        <div class="row justify-content-between">
-            <div class="col-12 col-sm-7 col-md-auto">
-                <nav aria-label="paginacion">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page > 1" href="user/{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Anterior</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page > 2" href="user/{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
-                        </li>
-                        <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                            <a class="page-link" href="user/{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Siguiente</a>
-                        </li>                    
-                    </ul>
-                </nav>
-            </div>
 
-            <!--            <div class="col-12 col-sm-5 col-md-auto">            
-                            <button type="button" class="btn btn-danger btn-sm" style="width: auto; height:30px;" ng-click="resetOrder()">
-                                <i class="fa fa-broom"> Limpiar</i>
-                            </button>                      
-                        </div>-->
-        </div>    
 
-        <div class="grid-container">
-            <div class="grid-item" ng-repeat="fila in ajaxDataProductos" style="text-align: center;">
-                <!--                <div class="grid-contenido"  ng-class="{'noExistencias': fila.existencias == 0 }"> 
-                                                        <img ng-src="images/{{fila.foto}}" style="width: 250px; height: 180px;border-radius: 10%;" alt=""/>
-                                </div>
-                
-                                <div class="grid-contenido">
-                                    {{fila.titulo}}                
-                                </div>
-                
-                                <div class="grid-contenido">                         
-                                    <i style="font-weight: bold;color:red;"> {{fila.precio.toFixed(2)}} $ </i>                
-                                    <a class="btn btn-warning" ng-click="add(fila.id)" ng-class="{'disabled': fila.existencias == 0 }" style="margin-left: 10px;">
-                                        <i class="fas fa-cart-plus" > Añadir a la cesta</i>
-                                    </a>
-                                </div>
-                                <div class="cesta1">
-                                </div>-->
-                <div class="portada" style="background: url('images/{{fila.foto}}'); 
-                     background-size: cover; background-position: center center;   border-radius: 5px;   border: 2px outset black;box-shadow: 4px 3px 2px #2F3031;" ng-class="{'desactivado': fila.existencias == 0 }">                                        
-                    <div class="vistaCuadrado1"> <a href="/user/comic/view/{{fila.id}}" style="color: white" >VISTA RÁPIDA</a></div>
-                </div>
-                <div class="titulo1">
-                    {{fila.titulo}}
-                </div>
-                <div class="precio1">
-                    {{fila.precio.toFixed(2)}} €
-                </div>
-                <div class="cestacomic" ng-click="add(fila.id,$event)" ng-if="fila.existencias !== 0" style="margin-left: 10px;">   
-                    AÑADIR A LA CESTA
-                </div>
-                <div class="" ng-click="add(fila.id,$event)" ng-if="fila.existencias == 0"  style="margin-left: 10px;">       
-                </div>
+
+    <div class="row justify-content-between">
+        <div class="col-12 col-sm-7 col-md-auto">
+            <nav aria-label="paginacion">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 1" href="user/{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 2" href="user/{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                        <a class="page-link" href="user/{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="grid-container">
+        <div class="grid-item" ng-repeat="fila in ajaxDataProductos | filter:comic" style="text-align: center;">
+            <div class="portada" style="background: url('images/{{fila.foto}}');" ng-style="estiloComic" ng-class="{'desactivado': fila.existencias == 0 }">
+                <div class="vistaCuadrado1"> <a href="user/comic/view/{{fila.id}}" style="color: white">VISTA
+                        RÁPIDA</a></div>
+            </div>
+            <div class="titulo1" ng-bind="fila.titulo">
+            </div>
+            <div class="precio1" ng-bind="fila.precio.toFixed(2)">
+            </div>
+            <div class="cestacomic" ng-click="add(fila.id,$event)" ng-if="fila.existencias !== 0" style="margin-left: 10px;">
+                AÑADIR A LA CESTA
+            </div>
+            <div class="" ng-click="add(fila.id,$event)" ng-if="fila.existencias == 0" style="margin-left: 10px;">
             </div>
         </div>
-        <div class="row justify-content-between" style="margin-top: 30px">
-            <div class="col-12 col-sm-7 col-md-auto">
-                <nav aria-label="paginacion">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page > 1" href="user/{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Anterior</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page > 2" href="user/{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
-                        </li>
-                        <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                            <a class="page-link" href="user/{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" ng-show="page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Siguiente</a>
-                        </li>                    
-                    </ul>
-                </nav>
-            </div>
+    </div>
+
+
+
+    <div class="row justify-content-between" style="margin-top: 30px">
+        <div class="col-12 col-sm-7 col-md-auto">
+            <nav aria-label="paginacion">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 1" href="user/{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page > 2" href="user/{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
+                    </li>
+                    <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
+                        <a class="page-link" href="user/{{ob}}/plist/{{rpp}}/{{p}}/{{orderURLCliente}}">{{p}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" ng-show="page != totalPages" href="user/{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
+<!-- </div> -->
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

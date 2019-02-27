@@ -86,7 +86,7 @@ moduleUsuario.controller('usuarioPlistFacturaUsuarioController', ['$scope', 'too
         //INFORMACION DE USUARIO
         $http({
             method: 'GET',
-            url: '/json?ob=usuario&op=get&id=' + $routeParams.id
+            url: 'http://localhost:8081/oncomic/json?ob=usuario&op=get&id=' + $routeParams.id
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDatosUsuarios = response.data.message;

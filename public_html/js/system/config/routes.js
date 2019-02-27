@@ -174,7 +174,7 @@ oncomic.config(['$routeProvider', function ($routeProvider) {
     //        $routeProvider.when('/user/comic/view/:id?', {templateUrl: 'js/app/comic/view.html', controller: 'comicViewController', resolve: {auth: autenticacionUsuario}});
 
     $routeProvider.when('/user/comic/plist/:rpp?/:page?/:order?', { templateUrl: 'js/app/user/comic/plist.html', controller: 'comicPlistUsuarioController', resolve: { auth: autenticacionHome } });
-    $routeProvider.when('/user/comic/view/:id?', { templateUrl: 'js/app/user/comic/view.html', controller: 'comicViewController', resolve: { auth: autenticacionHome } });
+    $routeProvider.when('/user/comic/view/:id?', { templateUrl: 'js/app/user/comic/view.html', controller: 'comicViewUsuarioController', resolve: { auth: autenticacionHome } });
 
     $routeProvider.otherwise({ redirectTo: '/' });
 }]);

@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>FECHA PUBLICACIÓN</th>
-                <td>{{ajaxDatoComic.fechapublicacion}}</td>
+                <td>{{fechaformato | date:"longDate"}} </td>    
             </tr>
             <tr>
                 <th>PÁGINAS</th>
@@ -51,10 +51,10 @@
                 <th>DESTACADO</th>                
                 <td>{{true == ajaxDatoComic.destacado? 'Sí' : ' No'}}</td>                 
             </tr>
-            <tr>
+            <!-- <tr>
                 <th>COLECCIÓN</th>      
                 <td>{{ajaxDatoComic.obj_coleccion.desc}}</td> 
-            </tr>      
+            </tr>       -->
         </table>
     </div>
     <div ng-show="mensaje3">

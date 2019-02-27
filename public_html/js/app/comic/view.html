@@ -73,7 +73,7 @@
 
         <tr>
             <th>FECHA PUBLICACIÓN</th>
-            <td>{{fechaformato}}</td>        
+            <td>{{fechaformato | date:"longDate"}} </td>        
         </tr>
         <tr>
             <th>PÁGINAS</th>
@@ -101,7 +101,7 @@
 
         <tr>
             <th>IMAGEN</th>
-            <td>{{ajaxDatoComic.foto}} <a target="_blank" href="http://localhost:8081/images/{{ajaxDatoComic.foto}}"> <img id="output" src="images/{{ajaxDatoComic.foto}}" alt="default" style="width: 67px; height: 80px;"/></a></td>            
+            <td>{{ajaxDatoComic.foto}} <a target="_blank" href="images/{{ajaxDatoComic.foto}}"> <img id="output" src="images/{{ajaxDatoComic.foto}}" alt="default" style="width: 67px; height: 80px;"/></a></td>            
         </tr>
 
         <tr>

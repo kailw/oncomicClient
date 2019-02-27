@@ -33,6 +33,15 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
             }
         }
 
+        $scope.estiloComic = {
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            borderRadius: "5px",
+            border: "2px outset black",
+            boxShadow: "4px 3px 2px #2F3031"
+        }
+
+
 
         $scope.resetOrder = function () {
             $location.url("user/" + $scope.ob + "/plist/8/1");
@@ -56,7 +65,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                             $scope.showAlert('Has elegido el maximo de existencias del comic:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad, ev);
 
                         } else {
-                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad,ev);
+                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad, ev);
                         }
                     }
                 }
@@ -109,6 +118,17 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
             $scope.ajaxDataProductos = response.data.message || 'Request failed';
         });
 
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob + '&op=getpage&rpp=10000&page=1'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDataProductosTodos = response.data.message;
+        }, function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDataProductos = response.data.message || 'Request failed';
+        });
+
 
         $http({
             method: 'GET',
@@ -155,14 +175,14 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
         $scope.showAlert = function (titulo, description, ev) {
             $mdDialog.show(
-                    $mdDialog.alert()
+                $mdDialog.alert()
                     .clickOutsideToClose(true)
                     .title(titulo)
                     .textContent(description)
                     .ariaLabel('Alert Dialog Demo')
                     .ok('OK!')
                     .targetEvent(ev)
-                    );
+            );
         };
     }
 

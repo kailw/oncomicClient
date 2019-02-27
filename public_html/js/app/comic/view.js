@@ -16,7 +16,9 @@ moduleComic.controller('comicViewController', ['$scope', '$http', '$location', '
             $scope.status = response.status;
             $scope.ajaxDatoComicGenero = response.data.message;
             $scope.ajaxDatoComic = response.data.message[0].obj_comic;
-            $scope.ajaxDatoComicFecha = response.data.message[0].obj_comic.fechapublicacion.toLocaleDateString();
+            $scope.ajaxDatoComicFecha = response.data.message[0].obj_comic.fechapublicacion;
+            var d = new Date($scope.ajaxDatoComicFecha);
+            $scope.fechaformato = d;
         }, function (response) {
             $scope.ajaxDatoComicGenero = response.data.message || 'Request failed';
             $scope.status = response.status;

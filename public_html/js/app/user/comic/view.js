@@ -1,6 +1,6 @@
 'use strict';
 
-moduleComic.controller('comicViewController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$mdDialog', 'countcarritoService',
+moduleComic.controller('comicViewUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$mdDialog', 'countcarritoService',
     function ($scope, $http, $location, toolService, $routeParams, sessionService, $mdDialog, countcarritoService) {
         $scope.id = $routeParams.id;
         $scope.ob1 = "comicgenero";

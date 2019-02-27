@@ -10,7 +10,10 @@ moduleComic.controller('comicRemoveController', ['$scope', '$http', '$location',
             url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob + '&op=get&id=' + $scope.id
         }).then(function (response) {
             $scope.status = response.status;
-            $scope.ajaxDatoComic = response.data.message;
+            $scope.ajaxDatoComic = response.data.message;            
+            var d = new Date($scope.ajaxDatoComic.fechapublicacion);
+            $scope.fechaformato = d;
+
         }, function (response) {
             $scope.ajaxDatoComic = response.data.message || 'Request failed';
             $scope.status = response.status;

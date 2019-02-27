@@ -44,9 +44,9 @@ $(function () {
     });
 
     $(".cestacomic").hover(function () {
-        $(this).css("background-color", "#0053BA");
+        $(this).css({"background-color": "#0053BA", "transition":"background 0.2s linear"});
     }, function () {
-        $(this).css("background-color", "#ED1410");
+        $(this).css({"background-color": "#ED1410"});
     });
     console.log("usuando");
 
