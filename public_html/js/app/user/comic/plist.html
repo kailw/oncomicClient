@@ -23,23 +23,23 @@
 
 <div class="container-fluid">
     <div class="row MUpBot">
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-7 col-md-3">
             <h1 class="h2"><i class="fa fa-book-open"></i> Comics</h1>
         </div>
 
-        <div class="col-5">
+        <div class="col-md-5">
             <md-autocomplete md-selected-item="selectedItem" md-search-text="comic" md-items="item in ajaxDataProductosTodos | filter:comic"
-                md-item-text="item.titulo" placeholder="Busca tu cómic !">
+                md-item-text="item.titulo" placeholder="Busca tu cómic !" >
                 <md-item-template>
                     <span md-highlight-text="comic">{{item.titulo}}</span>
                 </md-item-template>
                 <md-not-found>
-                    No se encontrado el cómic "{{comic}} {{selectedItem}}"".
+                    No se encontrado el cómic "{{comic}}"".
                 </md-not-found>
             </md-autocomplete>
         </div>
 
-
+        
         <div class="col-sm-auto col-md-auto ml-auto align-self-center">
             Selecciona RPP:
         </div>
@@ -78,7 +78,7 @@
 
 
     <div class="grid-container">
-        <div class="grid-item" ng-repeat="fila in ajaxDataProductos | filter:comic" style="text-align: center;">
+        <div class="grid-item" ng-repeat="fila in ajaxDataProductos | filter:comic" style="text-align: center;" title="{{fila.titulo}}">
             <div class="portada" style="background: url('images/{{fila.foto}}');" ng-style="estiloComic" ng-class="{'desactivado': fila.existencias == 0 }">
                 <div class="vistaCuadrado1"> <a href="user/comic/view/{{fila.id}}" style="color: white">VISTA
                         RÁPIDA</a></div>

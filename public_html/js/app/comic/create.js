@@ -125,7 +125,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
 
             var json = {
                 id: null,
-                titulo: $scope.titulo,
+                titulo: $scope.titulo.toUpperCase(),
                 desc: $scope.desc,
                 isbn: $scope.isbn,
                 fechapublicacion: $scope.fechapublicacion,

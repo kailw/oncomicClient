@@ -232,6 +232,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             destacado: null,
             obj_coleccion: {id: null}
         };
+        
         $scope.guardar = function () {
             $scope.upload();
             var foto = $scope.ajaxDatoComic.foto;
@@ -241,7 +242,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.op = $scope.dt;
             var json = {
                 id: $scope.ajaxDatoComic.id,
-                titulo: $scope.ajaxDatoComic.titulo,
+                titulo: $scope.ajaxDatoComic.titulo.toUpperCase(),
                 desc: $scope.ajaxDatoComic.desc,
                 isbn: $scope.ajaxDatoComic.isbn,
                 fechapublicacion: $scope.dt,

@@ -18,7 +18,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
         }
 
         if (!$routeParams.rpp) {
-            $scope.rpp = "8";
+            $scope.rpp = "12";
         } else {
             $scope.rpp = $routeParams.rpp;
         }

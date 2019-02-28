@@ -1,10 +1,10 @@
 <header-component></header-component>
 <main role="main" class="container" style="margin-bottom: 100px;">
-    <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 40%" ng-if="!cargando">
+    <div layout="row" layout-sm="column" layout-align="space-around" style="margin-top: 40%" ng-show="!cargando">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>    
 
-    <div class="primeraParte" ng-if="cargando">
+    <div class="primeraParte" ng-show="cargando">
         <a href="javascript:window.history.back();"> <button class="btn btn-success">Volver</button> </a>    
         <ng-form name="userForm" style="margin-bottom: 50px;" ng-show="!mensaje">
             <h3 style="text-align: center"> <i class="fas fa-book-open"></i>  Editar comic</h3>
@@ -244,10 +244,10 @@
                         <label>Colección</label>
                         <md-select ng-model="seleccionarColeccion" data-md-container-class="selectdemoSelectHeader" >
                             <md-select-header class="demo-select-header">
-                                <input ng-model="editorial" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
+                                <input ng-model="coleccion" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                             </md-select-header>
                             <md-option ng-value="0">Ninguna</md-option>
-                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoColeccion| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
+                            <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoColeccion | orderBy: 'desc' | filter:coleccion">{{fila.desc}}</md-option>
                         </md-select>                    
                     </md-input-container>
                 </div>

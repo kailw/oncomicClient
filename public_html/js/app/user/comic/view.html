@@ -1,6 +1,7 @@
 <header-component></header-component>
 <div style="margin: 1.8% 0 0 1.8%">
-    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
+    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button>
+    </a>
 </div>
 <!--<main role="main" class="container">
 
@@ -128,12 +129,18 @@
                 <img ng-src="images/{{ajaxDatoComic.foto}}" height="400px" style="border: 5px outset black;" alt="">
             </div>
             <div class="todoVista">
-                <div class="portadaTitulo"> {{ajaxDatoComic.titulo}}</div>
+                <div class="portadaTitulo"> 
+                    {{ajaxDatoComic.titulo}}
+                    <span class="badge badge-dark" ng-repeat="genero in ajaxDatoComicGenero" style="margin-left: 2%; font-size: 0.5em">
+                        {{genero.obj_genero.desc}} 
+                    </span>
+                </div>
                 <div class="portadaDescripcion">
                     {{ajaxDatoComic.desc}}
                 </div>
-                <div class="preciV">  {{ajaxDatoComic.precio.toFixed(2)}}€</div>
-                <div class="cestV" ng-click="add(ajaxDatoComic.id)" ng-class="{'disabled': fila.existencias == 0 }" style="margin-left: 10px;">    
+                <div class="preciV"> {{ajaxDatoComic.precio.toFixed(2)}}€</div>
+                <div class="cestV" ng-click="add(ajaxDatoComic.id)" ng-class="{'disabled': fila.existencias == 0 }"
+                    style="margin-left: 10px;">
                     AÑADIR CESTA
                 </div>
             </div>

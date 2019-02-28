@@ -28,13 +28,13 @@ $( document ).ready(function() {
 
     //precio home
     $(".precio1D").html("3,40€");
-    $("div[class*=\"precio\"").css({"text-align": "center", "font-size": "1.5em"});
+    // $("div[class*=\"precio\"").css({"text-align": "center", "font-size": "1.5em"});
 
 //    $(".titulo1").html("The increible Hulk and Wolverine");
-    $("div[class*=\"titulo\"").css({"text-align": "center", "font-size": "1.2em"});
+    // $("div[class*=\"titulo\"").css({"text-align": "center", "font-size": "1.2em"});
 
-    $("div[class*=\"cesta\"").html("AÑADIR A LA CESTA");
-    $("div[class*=\"cesta\"]").css({"background": "#ED1410", "text-align": "center", "color": "white", "padding": "4px 0", "cursor": "pointer", "transform": "skew(-6deg)"});
+    // $("div[class*=\"cesta\"").html("AÑADIR A LA CESTA");
+    // $("div[class*=\"cesta\"]").css({"background": "#ED1410", "text-align": "center", "color": "white", "padding": "4px 0", "cursor": "pointer", "transform": "skew(-6deg)"});
 
     $(".cesta").on("mouseenter", function () {
         $(".cesta1").css({"background": "#0053BA", "transition": "background 0.2s linear"});
@@ -43,12 +43,12 @@ $( document ).ready(function() {
         $(".cesta1").css({"background": "#ED1410"});
     });
 
-    $(".cestacomic").hover(function () {
-        $(this).css({"background-color": "#0053BA", "transition":"background 0.2s linear"});
-    }, function () {
-        $(this).css({"background-color": "#ED1410"});
-    });
-    console.log("usuando");
+    // $(".cestacomic").hover(function () {
+    //     $(this).css({"background-color": "#0053BA", "transition":"background 0.2s linear"});
+    // }, function () {
+    //     $(this).css({"background-color": "#ED1410"});
+    // });
+    // console.log("usuando");
 
 
     // $(".portada1").append("<div class=\"vistaRapidaCuadrado\" style=\"background-color: lightgreen; margin-top: 50px; margin-left: 38px; padding: 10px; color:black; display: none\">VISTA RÁPIDA</div>");

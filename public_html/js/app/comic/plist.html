@@ -59,7 +59,7 @@
                 <th style="min-width: 120px;">
                     Título
                 </th>
-                <th  style="max-width: 120px;">
+                <th  style="min-width: 500px;">
                     Descripción
                 </th>
                 <th>
@@ -144,7 +144,7 @@
             <tr ng-repeat="fila in ajaxDataComic track by $index">
                 <td>{{fila.id}}</td>
                 <td>{{fila.titulo}}</td>
-                <td style="max-width: 240px; overflow: hidden">{{fila.desc}}</td>  
+                <td style="max-width: 240px; overflow: hidden;text-align: justify">{{fila.desc}}</td>  
                 <td>{{fila.existencias}}</td>
                 <td>{{fila.precio.toFixed(2)}}</td>
                 <td>{{fila.foto}}</td>                
