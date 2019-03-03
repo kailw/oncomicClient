@@ -7,7 +7,7 @@
     <table class="table table-striped table-hover table-bordered">        
         <caption> <i class="fas fa-book-open"></i> View de comic</caption>
         <tr>
-            <th>ID</th>
+            <th style="min-width: 230px">ID</th>
             <th>{{ajaxDatoComic.id}}</th>
         </tr>   
         <tr>
@@ -96,7 +96,8 @@
 
         <tr>
             <th>DESCUENTO</th>
-            <td>{{0 !== ajaxDatoComic.descuento ? ajaxDatoComic.descuento : 'No'}}</td>                 
+            <td ng-if="ajaxDatoComic.descuento !==0">{{ajaxDatoComic.descuento}} %</td>                 
+            <td ng-if="ajaxDatoComic.descuento === 0">No</td>
         </tr>
 
         <tr>

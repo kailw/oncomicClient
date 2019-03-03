@@ -5,7 +5,7 @@ moduleService.service('pdfService', ['$http', function ($http) {
     return {
         pdf: function (id, fecha, iva, objUsuario) {
             doc = new jsPDF();
-            
+
             var linea = 110;
             doc.setFontType('normal');
 
@@ -38,9 +38,18 @@ moduleService.service('pdfService', ['$http', function ($http) {
                     var productoDesc = ajaxDatoLineaFactura[i].obj_Comic.isbn;
                     var productoCantidad = ajaxDatoLineaFactura[i].cantidad;
                     productoCantidadTotal += ajaxDatoLineaFactura[i].cantidad;
-                    var productoPrecio = ajaxDatoLineaFactura[i].obj_Comic.precio * productoCantidad;
-                    var productoPrecioUno = ajaxDatoLineaFactura[i].obj_Comic.precio;
-                    productoPrecioTotal += ajaxDatoLineaFactura[i].obj_Comic.precio * productoCantidad;
+                    if (ajaxDatoLineaFactura[i].obj_Comic.descuento == 0) {
+                        var productoPrecio = ajaxDatoLineaFactura[i].obj_Comic.precio * productoCantidad;
+                        var productoPrecioUno = ajaxDatoLineaFactura[i].obj_Comic.precio;                        
+                    } else {
+                        var resultadoDescuento = ((response.data.message[i].obj_Comic.precio) - (response.data.message[i].obj_Comic.precio * response.data.message[i].obj_Comic.descuento / 100));
+
+                        var productoPrecio = resultadoDescuento * productoCantidad;
+                        var productoPrecioUno = resultadoDescuento;
+                    }
+
+                    productoPrecioTotal += productoPrecioUno * productoCantidad;
+                    
 
                     doc.text(10, linea, productoCodigo);
                     doc.text(60, linea, productoDesc);
@@ -49,6 +58,7 @@ moduleService.service('pdfService', ['$http', function ($http) {
                     doc.text(170, linea, productoPrecio.toFixed(2).toString());
                     linea += 10;
                 }
+
                 doc.setFontType('bold');
                 doc.text(80, 273, 'IVA');
                 doc.text(125, 273, 'Cantidad Total');

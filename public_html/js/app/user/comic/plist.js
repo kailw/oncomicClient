@@ -1,14 +1,14 @@
 'use strict';
 
-moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$route', '$mdDialog', 'countcarritoService',
-    function ($scope, $http, $location, toolService, $routeParams, sessionService, $route, $mdDialog, countcarritoService) {
+moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$route', 'addCartService',
+    function ($scope, $http, $location, toolService, $routeParams, sessionService, $route, addCartService) {
 
         $scope.totalPages = 1;
         $scope.select = ["4", "8", "12", "24", "50", "500"];
         $scope.ob = "comic";
         $scope.ob2 = "genero";
 
-        countcarritoService.updateCarrito();
+
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -33,6 +33,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
             }
         }
 
+
         $scope.estiloComic = {
             backgroundSize: "cover",
             backgroundPosition: "center center",
@@ -50,32 +51,9 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
 
         $scope.add = function (id, ev) {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/oncomic/json?ob=carrito&op=add&comic=' + id + '&cantidad=1'
-            }).then(function (response) {
-                $scope.ajaxDataCantidadTotal = 0;
-                for (var i = 0; i < response.data.message.length; i++) {
-                    $scope.ajaxDataCantidadTotal += response.data.message[i].cantidad;
-                    if (id === response.data.message[i].obj_Comic.id) {
-                        $scope.ajaxDataCantidad = response.data.message[i].cantidad;
-                        $scope.ajaxDataTitulo = response.data.message[i].obj_Comic.titulo;
-                        $scope.ajaxDataExistencias = response.data.message[i].obj_Comic.existencias;
-                        if (response.data.message[i].obj_Comic.existencias === $scope.ajaxDataCantidad) {
-                            $scope.showAlert('Has elegido el maximo de existencias del comic:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad, ev);
-
-                        } else {
-                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad, ev);
-                        }
-                    }
-                }
-                countcarritoService.updateCarrito();
-
-            }, function (response) {
-                $scope.status = response.status;
-                $scope.error = $scope.status + " " + response.message || 'Request failed';
-            });
+            addCartService.add(id, ev);
         };
+
 
         $scope.ordena = function (order, align) {
             if ($scope.orderURLServidor === "") {
@@ -173,17 +151,6 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
         $scope.isActive = toolService.isActive;
 
-        $scope.showAlert = function (titulo, description, ev) {
-            $mdDialog.show(
-                $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title(titulo)
-                    .textContent(description)
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('OK!')
-                    .targetEvent(ev)
-            );
-        };
     }
 
 

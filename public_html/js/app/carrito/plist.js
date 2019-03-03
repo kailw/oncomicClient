@@ -11,7 +11,7 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
         $scope.usuariologeadoID = sessionService.getId();
         $scope.nologeado = false;
         $scope.carritoVacioTabla = false;
-        
+
         if (!$routeParams.order) {
             $scope.orderURLServidor = "";
             $scope.orderURLCliente = "";
@@ -57,7 +57,12 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
                 $scope.carritoVacio = false;
                 $scope.carritoVacioTabla = true;
                 for (var i = 0; i < response.data.message.length; i++) {
-                    $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
+                    if (response.data.message[i].obj_Comic.descuento == 0) {
+                        $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
+                    } else {
+                        $scope.resultadoDescuento = ((response.data.message[i].obj_Comic.precio) - (response.data.message[i].obj_Comic.precio * response.data.message[i].obj_Comic.descuento / 100))
+                        $scope.precioProducto += $scope.resultadoDescuento;
+                    }
                     $scope.cantidadProducto += response.data.message[i].cantidad;
                 }
             }
@@ -68,40 +73,40 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
 
 
 
-//        $scope.carrito = function (operacion, id, cantidad) {
-//
-//            $http({
-//                method: 'GET',
-//                url: '/json?ob=' + $scope.ob + '&op=' + operacion + '&comic=' + id + '&cantidad=' + cantidad
-//            }).then(function (response) {
-//                $scope.ajaxDataCarritoShow = response.data.message;
-//                $scope.precioProducto = 0;
-//                $scope.cantidadProducto = 0;
-//                if (response.data.message.length === 0) {
-//                    $scope.carritoVacio = true;
-//                    $scope.carritoVacioTabla = false;
-//                    $scope.cantidadProducto = 0;
-//                } else {
-//                    if (operacion === "add") {
-//                        for (var i = 0; i < response.data.message.length; i++) {
-//                            $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
-//                            $scope.cantidadProducto += response.data.message[i].cantidad;
-//                        }
-//                    }
-//
-//                    if (operacion === "reduce") {
-//                        for (var j = 0; j < response.data.message.length; j++) {
-//                            $scope.precioProducto += response.data.message[j].obj_Comic.precio;
-//                            $scope.cantidadProducto += response.data.message[j].cantidad;
-//                        }
-//                    }
-//                }
-//                countcarritoService.updateCarrito();
-//            }, function (response) {
-//                $scope.status = response.status;
-//                $scope.error = $scope.status + " " + response.message || 'Request failed';
-//            });
-//        };
+        //        $scope.carrito = function (operacion, id, cantidad) {
+        //
+        //            $http({
+        //                method: 'GET',
+        //                url: '/json?ob=' + $scope.ob + '&op=' + operacion + '&comic=' + id + '&cantidad=' + cantidad
+        //            }).then(function (response) {
+        //                $scope.ajaxDataCarritoShow = response.data.message;
+        //                $scope.precioProducto = 0;
+        //                $scope.cantidadProducto = 0;
+        //                if (response.data.message.length === 0) {
+        //                    $scope.carritoVacio = true;
+        //                    $scope.carritoVacioTabla = false;
+        //                    $scope.cantidadProducto = 0;
+        //                } else {
+        //                    if (operacion === "add") {
+        //                        for (var i = 0; i < response.data.message.length; i++) {
+        //                            $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
+        //                            $scope.cantidadProducto += response.data.message[i].cantidad;
+        //                        }
+        //                    }
+        //
+        //                    if (operacion === "reduce") {
+        //                        for (var j = 0; j < response.data.message.length; j++) {
+        //                            $scope.precioProducto += response.data.message[j].obj_Comic.precio;
+        //                            $scope.cantidadProducto += response.data.message[j].cantidad;
+        //                        }
+        //                    }
+        //                }
+        //                countcarritoService.updateCarrito();
+        //            }, function (response) {
+        //                $scope.status = response.status;
+        //                $scope.error = $scope.status + " " + response.message || 'Request failed';
+        //            });
+        //        };
 
         $scope.carrito = function (operacion, id, cantidad) {
             $http({
@@ -117,9 +122,13 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
                     $scope.cantidadProducto = 0;
                 } else {
                     if (operacion === "add") {
-
                         for (var i = 0; i < response.data.message.length; i++) {
-                            $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
+                            if (response.data.message[i].obj_Comic.descuento == 0) {
+                                $scope.precioProducto += (response.data.message[i].obj_Comic.precio * response.data.message[i].cantidad);
+                            } else {
+                                $scope.resultadoDescuento = ((response.data.message[i].obj_Comic.precio) - (response.data.message[i].obj_Comic.precio * response.data.message[i].obj_Comic.descuento / 100))
+                                $scope.precioProducto += $scope.resultadoDescuento * response.data.message[i].cantidad;
+                            }
                             $scope.cantidadProducto += response.data.message[i].cantidad;
                             if (id === response.data.message[i].obj_Comic.id) {
                                 if (response.data.message[i].obj_Comic.existencias === response.data.message[i].cantidad) {
@@ -132,7 +141,12 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
 
                     if (operacion === "reduce") {
                         for (var j = 0; j < response.data.message.length; j++) {
-                            $scope.precioProducto += (response.data.message[j].obj_Comic.precio * response.data.message[j].cantidad);
+                            if (response.data.message[j].obj_Comic.descuento == 0) {
+                                $scope.precioProducto += (response.data.message[j].obj_Comic.precio * response.data.message[j].cantidad);
+                            } else {
+                                $scope.resultadoDescuento = ((response.data.message[j].obj_Comic.precio) - (response.data.message[j].obj_Comic.precio * response.data.message[j].obj_Comic.descuento / 100))
+                                $scope.precioProducto += $scope.resultadoDescuento * response.data.message[j].cantidad;
+                            }
                             $scope.cantidadProducto += response.data.message[j].cantidad;
                         }
                     }
@@ -189,15 +203,16 @@ moduleCarrito.controller('carritoPlistController', ['$scope', '$http', '$locatio
         $scope.update = function () {
             $location.url($scope.ob + "/plist/" + $scope.rpp + "/" + $scope.page + "/" + $scope.orderURLCliente);
         };
+        
         $scope.showAlert = function (titulo, description) {
             $mdDialog.show(
-                    $mdDialog.alert()
+                $mdDialog.alert()
                     .clickOutsideToClose(false)
                     .title(titulo)
                     .textContent(description)
                     .ariaLabel('Alert Dialog Demo')
                     .ok('OK!')
-                    );
+            );
         };
 
         $scope.isActive = toolService.isActive;

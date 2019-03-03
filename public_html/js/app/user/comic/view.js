@@ -1,39 +1,16 @@
 'use strict';
 
-moduleComic.controller('comicViewUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', '$mdDialog', 'countcarritoService',
-    function ($scope, $http, $location, toolService, $routeParams, sessionService, $mdDialog, countcarritoService) {
+moduleComic.controller('comicViewUsuarioController', ['$scope', '$http', '$location', 'toolService', '$routeParams', 'sessionService', 'addCartService',
+    function ($scope, $http, $location, toolService, $routeParams, sessionService, addCartService) {
         $scope.id = $routeParams.id;
         $scope.ob1 = "comicgenero";
         $scope.ob2 = "autorespecialidad";
         $scope.ob3 = "comiceditorial";
         $scope.ob4 = "comicidioma";
+        $scope.ob5 = "comic";
 
-        $scope.add = function (id) {
-            $http({
-                method: 'GET',
-                url: 'http://localhost:8081/oncomic/json?ob=carrito&op=add&comic=' + id + '&cantidad=1'
-            }).then(function (response) {
-                $scope.ajaxDataCantidadTotal = 0;
-                for (var i = 0; i < response.data.message.length; i++) {
-                    $scope.ajaxDataCantidadTotal += response.data.message[i].cantidad;
-                    if (id === response.data.message[i].obj_Comic.id) {
-                        $scope.ajaxDataCantidad = response.data.message[i].cantidad;
-                        $scope.ajaxDataTitulo = response.data.message[i].obj_Comic.titulo;
-                        $scope.ajaxDataExistencias = response.data.message[i].obj_Comic.existencias;
-                        if (response.data.message[i].obj_Comic.existencias === $scope.ajaxDataCantidad) {
-                            $scope.showAlert('Has elegido el maximo de existencias del comic:' + response.data.message[i].obj_Comic.desc, " Cantidad:" + $scope.ajaxDataCantidad);
 
-                        } else {
-                            $scope.showAlert("Has añadido el comic: " + $scope.ajaxDataTitulo + " a tu carrito", "Cantidad:" + $scope.ajaxDataCantidad);
-                        }
-                    }
-                }
-                countcarritoService.updateCarrito();
-            }, function (response) {
-                $scope.status = response.status;
-                $scope.error = $scope.status + " " + response.message || 'Request failed';
-            });
-        };
+
         $http({
             method: 'GET',
             url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob1 + '&op=getpagex&campo=id_comic&id=' + $scope.id + '&rpp=1000' + '&page=1'
@@ -82,16 +59,34 @@ moduleComic.controller('comicViewUsuarioController', ['$scope', '$http', '$locat
             $scope.status = response.status;
         });
 
-        $scope.showAlert = function (titulo, description) {
-            $mdDialog.show(
-                    $mdDialog.alert()
-                    .clickOutsideToClose(false)
-                    .title(titulo)
-                    .textContent(description)
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('OK!')
-                    );
+
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob5 + '&op=getpagex&campo=destacado&id=1&rpp=10&page=1'
+        }).then(function (response) {
+            $scope.status = response.status;
+            $scope.ajaxDataComicDestacados = response.data.message;
+        }, function (response) {
+            $scope.ajaxDataComic = response.data.message || 'Request failed';
+            $scope.status = response.status;
+        });
+
+
+        $scope.estiloComic = {
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            borderRadius: "5px",
+            border: "2px outset black",
+            boxShadow: "4px 3px 2px #2F3031"
+        }
+
+
+
+        $scope.add = function (id, ev) {
+            addCartService.add(id, ev);
         };
+
+        
         $scope.isActive = toolService.isActive;
 
     }

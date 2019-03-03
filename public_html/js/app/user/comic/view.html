@@ -3,125 +3,7 @@
     <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button>
     </a>
 </div>
-<!--<main role="main" class="container">
 
-        <h3>Resultado de la llamada AJAX: {{ajaxData}}</h3>
-    <div class="primeraParte"></div>
-    <a href="javascript:window.history.back();"> <button class="btn btn-success" style="margin-bottom: 10px;"> Volver</button> </a>
-    <table class="table table-striped table-hover table-bordered">        
-        <caption> <i class="fas fa-book-open"></i> View de comic</caption>
-        <tr>
-            <th>ID</th>
-            <th>{{ajaxDatoComic.id}}</th>
-        </tr>   
-        <tr>
-            <th>TÍTULO</th>
-            <td>{{ajaxDatoComic.titulo}}</td>
-        </tr>
-        <tr>
-            <th>DESCRIPCIÓN</th>
-            <td>{{ajaxDatoComic.desc}}</td>        
-        </tr>
-
-        <tr>
-
-        <tr>
-            <th  style="margin: 30px">GÉNEROS</th>
-            <td>
-                <span class="padTabla"
-                      ng-repeat="fila in ajaxDatoComicGenero track by $index">
-                    {{fila.obj_genero.desc}}
-                </span>
-
-            </td>
-        </tr>        
-
-
-        <tr>
-            <th  style="margin: 30px">AUTORES</th>
-            <td>
-                <span class="padTabla"
-                      ng-repeat="fila in ajaxDatoAutorEspecialidad track by $index">
-                    {{fila.obj_autor.nombre}} ({{fila.obj_especialidad.desc}}) 
-                </span>
-
-            </td>
-        </tr>       
-
-        <tr>
-            <th  style="margin: 30px">EDITORIALES</th>
-            <td>
-                <span class="padTabla"
-                      ng-repeat="fila in ajaxDatoComicEditorial track by $index">
-                    {{fila.obj_editorial.desc}}
-                </span>
-
-            </td>
-        </tr>     
-
-        <tr>
-            <th  style="margin: 30px">IDIOMA</th>
-            <td>
-                <span class="padTabla"
-                      ng-repeat="fila in ajaxDatoComicIdioma track by $index">
-                    {{fila.obj_idioma.desc}}
-                </span>
-
-            </td>
-        </tr>  
-
-
-        <tr>
-            <th>ISBN</th>
-            <td>{{ajaxDatoComic.isbn}}</td>        
-        </tr>
-
-        <tr>
-            <th>FECHA PUBLICACIÓN</th>
-            <td>{{ajaxDatoComic.fechapublicacion}}</td>        
-        </tr>
-        <tr>
-            <th>PÁGINAS</th>
-            <td>{{ajaxDatoComic.pagina}}</td>        
-        </tr>
-
-        <tr>
-            <th>COLOR</th>
-            <td>{{true == ajaxDatoComic.color ? 'Sí' : ' No'}}</td>                 
-        </tr>
-
-        <tr>
-            <th>EXISTENCIAS</th>
-            <td>{{ajaxDatoComic.existencias}}</td>
-        </tr>
-        <tr>
-            <th>PRECIO</th>
-            <td>{{ajaxDatoComic.precio}}</td>
-        </tr>
-
-        <tr>
-            <th>DESCUENTO</th>
-            <td>{{0 !== ajaxDatoComic.descuento ? ajaxDatoComic.descuento : 'No'}}</td>                 
-        </tr>
-
-        <tr>
-            <th>IMAGEN</th>
-            <td>{{ajaxDatoComic.foto}} <a target="_blank" href="http://localhost:8081/images/{{ajaxDatoComic.foto}}"> <img id="output" src="images/{{ajaxDatoComic.foto}}" alt="default" style="width: 60px; height: 80px;"/></a></td>            
-        </tr>
-
-        <tr>
-            <th>DESTACADO</th>
-            <td>{{true == ajaxDatoComic.destacado ? 'Sí' : ' No'}}</td>                 
-        </tr>
-
-        <tr>
-            <th>COLECCION</th>      
-            <td>{{ajaxDatoComic.obj_coleccion.desc}}</td>
-        </tr> 
-
-
-    </table>
-</main>-->
 <div id="main">
     <div id="contenidoVista">
         <div id="vista">
@@ -129,17 +11,17 @@
                 <img ng-src="images/{{ajaxDatoComic.foto}}" height="400px" style="border: 5px outset black;" alt="">
             </div>
             <div class="todoVista">
-                <div class="portadaTitulo"> 
+                <div class="portadaTitulo">
                     {{ajaxDatoComic.titulo}}
                     <span class="badge badge-dark" ng-repeat="genero in ajaxDatoComicGenero" style="margin-left: 2%; font-size: 0.5em">
-                        {{genero.obj_genero.desc}} 
+                        {{genero.obj_genero.desc}}
                     </span>
                 </div>
                 <div class="portadaDescripcion">
                     {{ajaxDatoComic.desc}}
                 </div>
-                <div class="preciV"> {{ajaxDatoComic.precio.toFixed(2)}}€</div>
-                <div class="cestV" ng-click="add(ajaxDatoComic.id)" ng-class="{'disabled': fila.existencias == 0 }"
+                <div class="preciV"> {{ajaxDatoComic.precio.toFixed(2)}} €</div>
+                <div class="cestV" ng-click="add(ajaxDatoComic.id,$event)" ng-class="{'disabled': fila.existencias == 0 }"
                     style="margin-left: 10px;">
                     AÑADIR CESTA
                 </div>
@@ -159,87 +41,23 @@
                         <div style="overflow-y:hidden">
                             <div>
                                 <div class="carousel" data-flickity='{ "wrapAround": true , "freeScroll": true , "groupCells" : 3 , "pageDots": false, "percentPosition": false}'>
-                                    <!--                                    <div class="carousel-cell destacados1">
-                                                                            <div class="portada1">
-                                                                                <div class="vistaCuadrado1">VISTA RÁPIDA</div>
-                                                                            </div>
-                                                                            <div class="titulo1">
-                                                                            </div>
-                                                                            <div class="precio1">
-                                                                            </div>
-                                                                            <div class="cesta1">
-                                                                            </div>
-                                                                        </div>-->
-                                    <div class="carousel-cell destacados2">
-                                        <div class="portada2">
-                                            <div class="vistaCuadrado2">VISTA RÁPIDA</div>
+                                    <div class="carousel-cell" ng-repeat="fila in ajaxDataComicDestacados track by $index"
+                                        ng-if="fila.descuento == 0">
+                                        <div style="background: url('images/{{fila.foto}}');" ng-style="estiloComic"
+                                            class="portada">
+                                            <a href="user/comic/view/{{fila.id}}" style="color: white">
+                                                <div class="vistaCuadrado1">
+                                                    VISTA RÁPIDA
+                                                </div>
+                                            </a>
                                         </div>
-
-                                        <div class="titulo2">
+                                        <div class="titulo1" ng-bind="fila.titulo">
                                         </div>
-                                        <div class="precio2">
+                                        <div class="precio1">
+                                            {{fila.precio.toFixed(2)}} €
                                         </div>
-                                        <div class="cesta2">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell destacados3">
-                                        <div class="portada3">
-                                        </div>
-                                        <div class="titulo3">
-                                        </div>
-                                        <div class="precio3">
-                                        </div>
-                                        <div class="cesta3">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell destacados4">
-                                        <div class="portada4">
-                                        </div>
-                                        <div class="titulo4">
-                                        </div>
-                                        <div class="precio4">
-                                        </div>
-                                        <div class="cesta4">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell destacados5">
-                                        <div class="portada5">
-                                        </div>
-                                        <div class="titulo5">
-                                        </div>
-                                        <div class="precio5">
-                                        </div>
-                                        <div class="cesta5">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell destacados6">
-                                        <div class="portada6">
-                                        </div>
-                                        <div class="titulo6">
-                                        </div>
-                                        <div class="precio6">
-                                        </div>
-                                        <div class="cesta6">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell destacados7">
-                                        <div class="portada7">
-                                        </div>
-                                        <div class="titulo7">
-                                        </div>
-                                        <div class="precio7">
-                                        </div>
-                                        <div class="cesta7">
-                                        </div>
-                                    </div>
-                                    <div class="carousel-cell destacados8">
-                                        <div class="portada8">
-                                        </div>
-                                        <div class="titulo8">
-                                        </div>
-                                        <div class="precio8">
-                                        </div>
-                                        <div class="cesta8">
+                                        <div class="cestacomic" ng-click="add(fila.id, $event)" ng-if="fila.existencias !== 0">
+                                            AÑADIR A LA CESTA
                                         </div>
                                     </div>
                                 </div>

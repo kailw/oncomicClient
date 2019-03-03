@@ -239,6 +239,18 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             if ($scope.file !== undefined) {
                 foto = $scope.file.name;
             }
+            if ($scope.ajaxDatoComic.color === null || $scope.ajaxDatoComic.color === undefined) {
+                $scope.ajaxDatoComic.color = false;
+            }
+            if ($scope.ajaxDatoComic.destacado === null || $scope.ajaxDatoComic.destacado === undefined) {
+                $scope.ajaxDatoComic.destacado = false;
+            }
+
+            if ($scope.ajaxDatoComic.descuento === "" || $scope.ajaxDatoComic.descuento === undefined) {
+                $scope.ajaxDatoComic.descuento = 0;
+            }
+
+
             $scope.op = $scope.dt;
             var json = {
                 id: $scope.ajaxDatoComic.id,

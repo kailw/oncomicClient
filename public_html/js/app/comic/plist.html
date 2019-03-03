@@ -19,7 +19,7 @@
             <nav aria-label="paginacion">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Previous</a>
+                        <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{orderURLCliente}}">Anterior</a>
                     </li>
                     <li class="page-item">
                         <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{orderURLCliente}}">1</a>
@@ -31,7 +31,7 @@
                         <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{orderURLCliente}}">{{totalPages}}</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Next</a>
+                        <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{orderURLCliente}}">Siguiente</a>
                     </li>                    
                 </ul>
             </nav>
@@ -69,7 +69,7 @@
                     Precio
                 </th>
                 <th>
-                    Foto
+                    Páginas
                 </th>
                 <th>
                     Coleccion
@@ -147,7 +147,7 @@
                 <td style="max-width: 240px; overflow: hidden;text-align: justify">{{fila.desc}}</td>  
                 <td>{{fila.existencias}}</td>
                 <td>{{fila.precio.toFixed(2)}}</td>
-                <td>{{fila.foto}}</td>                
+                <td>{{fila.pagina}}</td>                
                 <td>                    
                     <a href="coleccion/create" ng-if="fila.obj_coleccion === undifined">NINGUNA</a>
                     <a href="coleccion/view/{{fila.obj_coleccion.id}}">{{fila.obj_coleccion.desc}}</a>

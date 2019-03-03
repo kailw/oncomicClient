@@ -52,48 +52,6 @@ body {
     margin: 20px;
 }
 
-/* imagenes del primer carrousel */
-
-/* .entrada1 {
-   background: url("../images/entrada1.jpg");
-   background-size: cover;
-   background-position: center center;
-   border-radius: 5px;
-   border: 4px outset black;
-} 
-
-.entrada2 {
-   background: url("../images/entrada2.jpg");
-   background-size: 80%;
-   border-radius: 5px;
-   background-position: 0 50%;
-   border: 4px outset black;
-}
-
-.entrada3 {
-   background: url("../images/entrada3.jpg");
-   background-size: cover;
-   background-position: center;
-   border-radius: 5px;
-   border: 4px outset black;
-}
-
-.entrada4 {
-   background: url("../images/entrada4.jpg");
-   background-size: cover;
-   background-position: center;
-   border-radius: 5px;
-   border: 4px outset black;
-}
-
-.entrada5 {
-   background: url("../images/entrada5.jpg");
-   background-size: cover;
-   background-position: center;
-   border-radius: 5px;
-   border: 4px outset black;
-}  */
-
 /* external css: flickity.css del primer carrousel */
 
 .gallery {
@@ -128,113 +86,6 @@ body {
     margin: 0 1.7%;
 }
 
-/* imagenes de los comics mas destacados */
-
-/*.portada1 {
-    background: url("../images/destacado1.jpg");
-    background-size: cover;
-    background-position: top center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}*/
-
-.portada2 {
-    background: url("../images/destacado2.jpg");
-    background-size: cover;
-    background-position: top center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portada3 {
-    background: url("../images/destacado3.jpg");
-    background-size: cover;
-    background-position: top center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portada4 {
-    background: url("../images/destacado4.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portada5 {
-    background: url("../images/destacado5.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portada6 {
-    background: url("../images/destacado6.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portada7 {
-    background: url("../images/destacado7.jpg");
-    background-size: cover;
-    background-position: top center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portada8 {
-    background: url("../images/destacado8.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-/*// imagenes de los comic mas vendidos*/
-
-.portadaV1 {
-    background: url("../images/vendidos1.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portadaV2 {
-    background: url("../images/vendidos2.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portadaV3 {
-    background: url("../images/vendidos3.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portadaV4 {
-    background: url("../images/vendidos4.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
-
-.portadaV5 {
-    background: url("../images/vendidos5.jpg");
-    background-size: cover;
-    background-position: center;
-    border: 2px outset black;
-    box-shadow: 4px 3px 2px #2F3031;
-}
 
 /* el boton que aperece cuando pasas por encima de un comic */
 
@@ -309,6 +160,16 @@ div[class*="precio"] {
     font-size: 1.5em;
     text-align: center;
 }
+
+.preci1DN {
+    text-decoration: line-through;
+    align-self: center;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+
+
 
 #informacion {
     grid-area: INFORMACION;

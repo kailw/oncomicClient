@@ -29,7 +29,7 @@
 
         <div class="col-md-5">
             <md-autocomplete md-selected-item="selectedItem" md-search-text="comic" md-items="item in ajaxDataProductosTodos | filter:comic"
-                md-item-text="item.titulo" placeholder="Busca tu cómic !" >
+                md-item-text="item.titulo" placeholder="Busca tu cómic !">
                 <md-item-template>
                     <span md-highlight-text="comic">{{item.titulo}}</span>
                 </md-item-template>
@@ -39,7 +39,7 @@
             </md-autocomplete>
         </div>
 
-        
+
         <div class="col-sm-auto col-md-auto ml-auto align-self-center">
             Selecciona RPP:
         </div>
@@ -80,13 +80,27 @@
     <div class="grid-container">
         <div class="grid-item" ng-repeat="fila in ajaxDataProductos | filter:comic" style="text-align: center;" title="{{fila.titulo}}">
             <div class="portada" style="background: url('images/{{fila.foto}}');" ng-style="estiloComic" ng-class="{'desactivado': fila.existencias == 0 }">
-                <div class="vistaCuadrado1"> <a href="user/comic/view/{{fila.id}}" style="color: white">VISTA
-                        RÁPIDA</a></div>
+                <div class="vistaCuadrado1">
+                    <a href="user/comic/view/{{fila.id}}" style="color: white">
+                        VISTA RÁPIDA
+                    </a>
+                </div>
             </div>
             <div class="titulo1" ng-bind="fila.titulo">
             </div>
-            <div class="precio1" ng-bind="fila.precio.toFixed(2)">
+            <div class="precio1" ng-if="fila.descuento == 0">
+                {{fila.precio.toFixed(2)}} €
             </div>
+
+            <div class="pp" ng-if="fila.descuento !== 0">
+                <div class="preci1DN">
+                    {{fila.precio.toFixed(2)}} €
+                </div>
+                <div class="precio1D">
+                    {{ ((fila.precio) - (fila.precio * fila.descuento / 100)).toFixed(2) }} €
+                </div>
+            </div>
+
             <div class="cestacomic" ng-click="add(fila.id,$event)" ng-if="fila.existencias !== 0" style="margin-left: 10px;">
                 AÑADIR A LA CESTA
             </div>
@@ -94,6 +108,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 

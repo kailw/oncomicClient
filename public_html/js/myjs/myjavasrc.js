@@ -27,7 +27,7 @@ $( document ).ready(function() {
     });
 
     //precio home
-    $(".precio1D").html("3,40€");
+    // $(".precio1D").html("3,40€");
     // $("div[class*=\"precio\"").css({"text-align": "center", "font-size": "1.5em"});
 
 //    $(".titulo1").html("The increible Hulk and Wolverine");
@@ -70,8 +70,8 @@ $( document ).ready(function() {
 
 
 
-    $(".precio1DN").html("5,45 €");
-    $(".precio1DN").css({"text-decoration": "line-through", "font-size": "1em"});
+    // $(".precio1DN").html("5,45 €");
+    // $(".precio1DN").css({"text-decoration": "line-through", "font-size": "1em"});
 
     $(".precio2").html("3,20 €");
     $(".titulo2").html("Dared Evil");
