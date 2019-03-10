@@ -34,6 +34,7 @@ function js(toolService, sessionService, $http, $location, countcarritoService) 
         console.log("si session");
     } else {
         console.log("no session");
+        self.isActive = toolService.isActive;
     }
     //    $http({
     //        method: 'GET',

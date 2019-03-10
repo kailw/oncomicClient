@@ -43,8 +43,9 @@
         </div>
 
         <div style="background: lightgreen; padding: 10px; border-radius: 5px; font-size: 15px; cursor: pointer"
-            ng-click="busquedaAvanzada($event)" obj="ajaxDataProductos">Búsqueda Avanzada</div>
+            ng-click="busquedaAvanzada($event)" >Búsqueda Avanzada</div>
 
+        <button class="btn btn-secondary" style="margin-left: 5px" ng-click="recargar()"><i class="fas fa-redo-alt"></i></button>
 
         <div class="col-sm-auto col-md-auto ml-auto align-self-center">
             Selecciona RPP:
@@ -58,7 +59,7 @@
 
 
 
-    <div class="row justify-content-between">
+    <div class="row justify-content-between" ng-show="!errorBusqueda">
         <div class="col-12 col-sm-7 col-md-auto">
             <nav aria-label="paginacion">
                 <ul class="pagination">
@@ -124,7 +125,7 @@
 
 
 
-    <div class="row justify-content-between" style="margin-top: 30px">
+    <div class="row justify-content-between" style="margin-top: 30px" ng-show="!errorBusqueda">
         <div class="col-12 col-sm-7 col-md-auto">
             <nav aria-label="paginacion">
                 <ul class="pagination">

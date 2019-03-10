@@ -54,7 +54,24 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
         $scope.add = function (id, ev) {
             addCartService.add(id, ev);
+            cartAnimation('#carritoBoton', 'shake');
         };
+
+
+
+        function cartAnimation(element, animationName, callback) {
+            const node = document.querySelector(element)
+            node.classList.add('animated', animationName)
+
+            function handleAnimationEnd() {
+                node.classList.remove('animated', animationName)
+                node.removeEventListener('animationend', handleAnimationEnd)
+
+                if (typeof callback === 'function') callback()
+            }
+
+            node.addEventListener('animationend', handleAnimationEnd)
+        }
 
 
         $scope.ordena = function (order, align) {
@@ -153,8 +170,10 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
         $scope.selectedEditorial = [];
         $scope.selectedIdioma = [];
         $scope.contador = 0;
-
+        $scope.errorBusqueda = false;
         $scope.busquedaAvanzada = function (ev) {
+   
+
             $mdDialog.show({
                 locals: { dataToPass: $scope.ajaxDataProductos },
                 templateUrl: 'js/app/user/comic/busquedaAvanzada.html',
@@ -169,7 +188,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
             });
 
-            
+
 
 
             function DialogController($scope, dataToPass) {
@@ -215,7 +234,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                 } else {
                     $scope.activado = true;
                 }
-                
+
                 $scope.toggle = function (item, list) {
                     var idx = list.indexOf(item);
 
@@ -255,7 +274,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                     $mdDialog.hide(answer);
                 };
 
-                $scope.errorBusqueda = false;
+                
 
                 $scope.urlComienzo = "http://localhost:8081/oncomic/json?ob=comic&op=getpagecomicadvanced&rpp=20&page=1";
 
@@ -283,7 +302,10 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                         $scope.ajaxDataProductos = response.data.message;
                         if ($scope.ajaxDataProductos.length < 1) {
                             $scope.errorBusqueda = true;
+                        } else {
+                            $scope.errorBusqueda = false;
                         }
+
                     }, function (response) {
                         $scope.status = response.status;
                         $scope.errorBusqueda = true;
@@ -362,8 +384,21 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
 
 
         // }
-
-
+        $scope.recargar = function () {
+            $scope.selectedGenero = [];
+            $scope.selectedEditorial = [];
+            $scope.selectedIdioma = [];
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob + '&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            }).then(function (response) {
+                $scope.status = response.status;
+                $scope.ajaxDataProductos = response.data.message;
+            }, function (response) {
+                $scope.status = response.status;
+                $scope.ajaxDataProductos = response.data.message || 'Request failed';
+            });
+        }
 
         $scope.isActive = toolService.isActive;
 

@@ -3961,7 +3961,7 @@ tbody.collapse.show {
     padding: 0.45rem 1rem;
     margin: 0;
     z-index: 2;
-    border-radius: 8px;
+    border-radius:3px;
 
     /* ======================================= */
 }
@@ -7360,7 +7360,7 @@ button.bg-dark:focus {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 1030;
+    z-index: 30;
 }
 
 .fixed-bottom {

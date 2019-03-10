@@ -26,7 +26,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" ng-class="{'active': c.isActive('/user/comic')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH">
+                <li class="nav-item" ng-class="{'active': c.isActive('/user')}" ng-if="c.idTipoUsuario !== 1 || c.idTipoUsuario == null && c.loginH">
                     <a class="nav-link hvr-pop" href="user/comic/plist"><i class="fa fa-book-open"></i>
                         <span class="desaparece"> Comics</span><span class="sr-only">(current)</span>
                     </a>
@@ -159,7 +159,7 @@
             </md-autocomplete>
 
 
-            <a href="carrito/plist"><button ng-if="c.idTipoUsuario !== 1" class="btn btn-warning hvr-wobble-horizontal"
+            <a href="carrito/plist"><button id="carritoBoton" ng-if="c.idTipoUsuario !== 1" class="btn btn-warning hvr-wobble-horizontal"
                     style="margin-right: 10px; margin-left: 10px"> <i class="fa fa-shopping-cart"> <span ng-show="c.carrito > 0">{{c.carrito}}</span></i></button></a>
 
 

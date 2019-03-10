@@ -13,7 +13,7 @@
             <div class="todoVista">
                 <div class="portadaTitulo">
                     {{ajaxDatoComic.titulo}}
-                    <span class="badge badge-dark" ng-repeat="genero in ajaxDatoComicGenero" style="margin-left: 2%; font-size: 0.5em">
+                    <span class="badge badge-dark" ng-repeat="genero in ajaxDatoComicGenero | orderBy:'obj_genero.desc'" style="margin-left: 2%; font-size: 0.5em">
                         {{genero.obj_genero.desc}}
                     </span>
                 </div>
