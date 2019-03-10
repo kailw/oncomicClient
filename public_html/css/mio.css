@@ -2,42 +2,43 @@
     text-align: center;
 }
 
-.primeraParte, terceraParte{
-    margin-top: 6%;    
-    margin-bot: 1.2%;    
+.primeraParte, terceraParte {
+    margin-top: 6%;
+    margin-bot: 1.2%;
 }
+
 .segundaParte {
     margin-top: 30px;
 }
 
-.primeraPartev{
-    margin-top: 25px;    
+.primeraPartev {
+    margin-top: 25px;
+}
 
-}
 .mensaje {
-    margin:15px;
+    margin: 15px;
 }
+
 .tablacentro {
     text-align: center;
 }
 
-
 #colorNegroborder {
-    border-top:  1px solid rgb(33,37,41);
+    border-top: 1px solid rgb(33, 37, 41);
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(180px,210px));     
+    grid-template-columns: repeat(auto-fill, minmax(180px, 210px));
     grid-auto-rows: 500px;
     grid-gap: 50px 10%;
-    padding: 10px;    
-    justify-content: center;    
+    padding: 10px;
+    justify-content: center;
 }
 
-.grid-item {        
+.grid-item {
     display: grid;
-    grid-template-rows: 67% 15% 10% 8%;    
+    grid-template-rows: 67% 15% 10% 8%;
 }
 
 .grid-item:hover {
@@ -45,13 +46,9 @@
     transition: transform 0.2s linear;
 }
 
-
-
 .grid-contenido {
-    align-self: center;    
+    align-self: center;
 }
-
-
 
 /*.noExistencias {
     background: url('../images/agotado.jpg');   
@@ -61,11 +58,12 @@
 }*/
 
 /* ONCOMICS MODIFICACIONES*/
+
 .NDecoration {
     text-decoration: none !important;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
@@ -87,7 +85,6 @@ a{
     margin-left: 2%;
 }
 
-
 .desactivado {
     opacity: 0.7;
 }
@@ -96,23 +93,22 @@ a{
     box-sizing: border-box;
 }
 
-
-.md-checkbox.md-default-theme:not([disabled]).md-primary:not(.md-checked) .md-icon, md-checkbox:not([disabled]).md-primary:not(.md-checked) .md-icon{
-    border: 1px solid  #ced4da !important;    
+.md-checkbox.md-default-theme:not([disabled]).md-primary:not(.md-checked) .md-icon, md-checkbox:not([disabled]).md-primary:not(.md-checked) .md-icon {
+    border: 1px solid #ced4da !important;
 }
 
 md-checkbox.md-default-theme:not([disabled]).md-primary.md-checked .md-icon, md-checkbox:not([disabled]).md-primary.md-checked .md-icon {
     background: #66C595;
 }
 
-
-
 .selectdemoSelectHeader .demo-header-searchbox {
     border: none;
     outline: none;
     height: 100%;
     width: 100%;
-    padding: 0; }
+    padding: 0;
+}
+
 .selectdemoSelectHeader .demo-select-header {
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12);
     padding-left: 10.667px;
@@ -121,27 +117,56 @@ md-checkbox.md-default-theme:not([disabled]).md-primary.md-checked .md-icon, md-
     position: relative;
     display: flex;
     align-items: center;
-    width: auto; }
-.selectdemoSelectHeader md-content._md {
-    max-height: 240px; }
-
-
-
-
-
-
-@media (max-width: 760px){
-    .desaparece {        
-
-
-    }
+    width: auto;
 }
 
-@media (max-width: 1200px){
-    .desaparece {        
+.selectdemoSelectHeader md-content._md {
+    max-height: 240px;
+}
+
+
+.md-autocomplete#custom-template {
+    width: 500px ;
+}
+
+.autocomplete-custom-template li {
+    border-bottom: 1px solid #ccc;
+    height: auto !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: normal;
+}
+
+.autocomplete-custom-template li:last-child {
+    border-bottom-width: 0;
+}
+
+.autocomplete-custom-template .item-title, .autocomplete-custom-template .item-metadata {
+    display: block;
+    line-height: 2;
+    
+}
+
+.autocomplete-custom-template .item-title md-icon {
+    height: 85px;
+    width: 60px;
+    margin-top: 2%;
+}
+
+.md-scroll-mask {
+    z-index: 0 !important;
+}
+
+
+
+
+@media (max-width: 760px) {
+    .desaparece {}
+}
+
+@media (max-width: 1200px) {
+    .desaparece {
         visibility: hidden;
         display: none;
-
     }
 }
-

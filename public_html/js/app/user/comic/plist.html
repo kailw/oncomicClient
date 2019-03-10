@@ -27,7 +27,7 @@
             <h1 class="h2"><i class="fa fa-book-open"></i> Comics</h1>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-3">
             <md-autocomplete md-selected-item="selectedItem" md-search-text="comic" md-items="item in ajaxDataProductosTodos | filter:comic"
                 md-item-text="item.titulo" placeholder="Busca tu cómic !">
                 <md-item-template>
@@ -37,7 +37,13 @@
                     No se encontrado el cómic "{{comic}}"".
                 </md-not-found>
             </md-autocomplete>
+
+
+
         </div>
+
+        <div style="background: lightgreen; padding: 10px; border-radius: 5px; font-size: 15px; cursor: pointer"
+            ng-click="busquedaAvanzada($event)" obj="ajaxDataProductos">Búsqueda Avanzada</div>
 
 
         <div class="col-sm-auto col-md-auto ml-auto align-self-center">
@@ -77,7 +83,7 @@
     </div>
 
 
-    <div class="grid-container">
+    <div class="grid-container" ng-show="!errorBusqueda">
         <div class="grid-item" ng-repeat="fila in ajaxDataProductos | filter:comic" style="text-align: center;" title="{{fila.titulo}}">
             <div class="portada" style="background: url('images/{{fila.foto}}');" ng-style="estiloComic" ng-class="{'desactivado': fila.existencias == 0 }">
                 <div class="vistaCuadrado1">
@@ -110,6 +116,11 @@
     </div>
 
 
+    <div ng-show="errorBusqueda" class="row justify-content-center">
+        <div class="alert alert-primary col-5" style="text-align: center">
+            No se ha encontrado ningún cómic</a>
+        </div>
+    </div>
 
 
 

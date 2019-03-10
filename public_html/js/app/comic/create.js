@@ -123,6 +123,11 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                 $scope.descuento = 0;
             }
 
+
+            if ($scope.seleccionarColeccion == null) {
+                $scope.seleccionarColeccion = 13;
+            }
+
             var json = {
                 id: null,
                 titulo: $scope.titulo.toUpperCase(),
@@ -142,7 +147,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                 method: 'GET',
                 withCredentials: true,
                 url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob1 + '&op=create',
-                params: {json: JSON.stringify(json)}
+                params: { json: JSON.stringify(json) }
             }).then(function (response) {
                 $scope.idCreado = response.data.message.id;
                 $scope.status = response.status;
@@ -159,7 +164,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                         method: 'GET',
                         withCredentials: true,
                         url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob3 + '&op=create',
-                        params: {json: JSON.stringify(json1)}
+                        params: { json: JSON.stringify(json1) }
                     }).then(function (response) {
                         $scope.status = response.status;
                     }, function (response) {
@@ -179,7 +184,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                         method: 'GET',
                         withCredentials: true,
                         url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob8 + '&op=create',
-                        params: {json: JSON.stringify(json4)}
+                        params: { json: JSON.stringify(json4) }
                     }).then(function (response) {
                         $scope.status = response.status;
                     }, function (response) {
@@ -197,7 +202,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                     method: 'GET',
                     withCredentials: true,
                     url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob10 + '&op=create',
-                    params: {json: JSON.stringify(json4)}
+                    params: { json: JSON.stringify(json4) }
                 }).then(function (response) {
                     $scope.status = response.status;
                 }, function (response) {
@@ -217,7 +222,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
                             method: 'GET',
                             withCredentials: true,
                             url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob6 + '&op=create',
-                            params: {json: JSON.stringify(json2)}
+                            params: { json: JSON.stringify(json2) }
                         }).then(function (response) {
                             $scope.status = response.status;
                         }, function (response) {
@@ -265,7 +270,7 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
             oformData.append('file', file);
 
             $http({
-                headers: {'Content-Type': undefined},
+                headers: { 'Content-Type': undefined },
                 method: 'POST',
                 data: oformData,
                 url: 'http://localhost:8081/oncomic/json?ob=comic&op=loadimage'
@@ -278,18 +283,18 @@ moduleComic.controller('comicCreateController', ['$scope', '$http', '$location',
 
     }
 ]).directive('fileModel', ['$parse', function ($parse) {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-                var model = $parse(attrs.fileModel);
-                var modelSetter = model.assign;
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
-                element.bind('change', function () {
-                    scope.$apply(function () {
-                        modelSetter(scope, element[0].files[0]);
-                    });
+            element.bind('change', function () {
+                scope.$apply(function () {
+                    modelSetter(scope, element[0].files[0]);
                 });
-            }
-        };
-    }]);
+            });
+        }
+    };
+}]);
 

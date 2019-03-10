@@ -279,7 +279,7 @@
                                 <input ng-model="coleccion" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox"
                                     onkeydown="event.stopPropagation()">
                             </md-select-header>
-                            <md-option ng-value="0">Ninguna</md-option>
+                            <!-- <md-option ng-value="0">Ninguna</md-option> -->
                             <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoColeccion | orderBy: 'desc' | filter:coleccion">{{fila.desc}}</md-option>
                         </md-select>
                     </md-input-container>

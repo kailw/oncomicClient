@@ -1,0 +1,61 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Búsqueda Avanzada </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">X</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <h3>Géneros</h3>
+                <div layout="row" layout-wrap="" flex="">
+                    <div flex="30" ng-repeat="fila in Generos track by $index">
+                        <md-checkbox ng-checked="exists(fila.id,selectedGenero)" ng-click="toggle(fila.id,selectedGenero)" ng-init="checked=true">
+                            {{ fila.desc }} <span ng-if="exists(fila.id,selectedGenero)"></span>
+                        </md-checkbox>
+                  
+                    </div>
+                </div>
+
+                <h3>Editorial</h3>
+                <div layout="row" layout-wrap="" flex="">
+                    <div flex="30" ng-repeat="fila in Editorial track by $index">
+                        <md-checkbox ng-checked="exists(fila.id,selectedEditorial)" ng-click="toggle(fila.id,selectedEditorial)">
+                            {{ fila.desc }} <span ng-if="exists(fila.id,selectedEditorial)"></span>
+                        </md-checkbox>
+
+                    </div>
+                </div>
+
+                <h3>Idioma</h3>
+                <div layout="row" layout-wrap="" flex="">
+                    <div flex="30" ng-repeat="fila in Idioma track by $index">
+                        <md-checkbox ng-checked="exists(fila.id,selectedIdioma)" ng-click="toggle(fila.id,selectedIdioma)">
+                            {{ fila.desc }} <span ng-if="exists(fila.id,selectedIdioma)"></span>
+                        </md-checkbox>
+
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+                More on Wikipedia
+            </md-button> -->
+            <!-- <span flex></span>
+            <md-button ng-click="answer('not useful')">
+                Cancelar -->
+            </md-button>
+            <md-button ng-click="buscar()" ng-disabled="activado">
+                Buscar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

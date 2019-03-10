@@ -253,7 +253,7 @@
                         <md-select-header class="demo-select-header">
                             <input ng-model="editorial" type="text" placeholder="Busca su coleccion" class="demo-header-searchbox" onkeydown="event.stopPropagation()">
                         </md-select-header>
-                        <md-option ng-value="0">Ninguna</md-option>
+                        <!-- <md-option ng-value="0">Ninguna</md-option> -->
                         <md-option ng-value="fila.id" ng-repeat="fila in ajaxDatoComicColeccion| orderBy: 'desc' | filter:editorial">{{fila.desc}}</md-option>
                     </md-select>                    
                 </md-input-container>

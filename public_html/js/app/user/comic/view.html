@@ -20,8 +20,10 @@
                 <div class="portadaDescripcion">
                     {{ajaxDatoComic.desc}}
                 </div>
-                <div class="preciV"> {{ajaxDatoComic.precio.toFixed(2)}} €</div>
-                <div class="cestV" ng-click="add(ajaxDatoComic.id,$event)" ng-class="{'disabled': fila.existencias == 0 }"
+                <div class="preciV" ng-if="ajaxDatComic.descuento == 0"> {{ajaxDatoComic.precio.toFixed(2)}} €</div>
+                <div class="preciV" ng-if="ajaxDatComic.descuento !== 0"> 
+                    {{ ((ajaxDatoComic.precio) - (ajaxDatoComic.precio * ajaxDatoComic.descuento / 100)).toFixed(2) }} €</div>
+                <div class="cestV" ng-click="add(ajaxDatoComic.id,$event)" ng-class="{'disabled': ajaxDatoComic.existencias == 0 }"
                     style="margin-left: 10px;">
                     AÑADIR CESTA
                 </div>

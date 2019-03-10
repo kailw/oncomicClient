@@ -36,7 +36,7 @@ moduleComic.controller('comicEditController', ['$scope', '$http', '$location', '
             $scope.status = response.status;
             $scope.ajaxDatoComic = response.data.message;
             if ($scope.ajaxDatoComic.obj_coleccion === undefined) {
-                $scope.seleccionarColeccion = 0;
+                $scope.seleccionarColeccion = 13;
             } else {
                 $scope.seleccionarColeccion = $scope.ajaxDatoComic.obj_coleccion.id;
             }
