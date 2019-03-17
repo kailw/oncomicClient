@@ -94,12 +94,14 @@ div[class*="vistaCuadrado"] {
     color: white;
     display: grid;
     justify-content: center;
-    margin: 20% 18% 0%;
+    margin: 40% 18% 0%;
     padding: 10px;
     border-radius: 2px;
     opacity: 0;
     text-align: center; /* cuando se hace para movil el titulo no entra en cuadrado y no se centra pero con justify content deberia centrarse peo no lo hace*/
 }
+
+
 
 div[class*="cesta"] {
     background: #ED1410;    

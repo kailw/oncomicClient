@@ -23,12 +23,20 @@
 
 <div class="container-fluid">
     <div class="row MUpBot">
-        <div class="col-sm-7 col-md-3">
+        <div class="col-sm-12 col-md-3">
             <h1 class="h2"><i class="fa fa-book-open"></i> Comics</h1>
         </div>
 
-        <div class="col-md-3">
-            <md-autocomplete md-selected-item="selectedItem" md-search-text="comic" md-items="item in ajaxDataProductosTodos | filter:comic"
+        <!-- <div class="col-sm-auto col-md-auto ml-auto align-self-center">
+            Selecciona RPP:
+        </div>
+        <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
+            <select class="form-control" ng-change="update()" ng-model="rpp" ng-options="value for value in select">
+            </select>
+        </div> -->
+
+        <div class="col-sm-auto col-md-3 ml-auto align-self-center justify-content-end">
+            <md-autocomplete md-selected-item="selectedItem" md-search-text="comic" md-items="item in ajaxDataProductos | filter:comic"
                 md-item-text="item.titulo" placeholder="Busca tu cómic !">
                 <md-item-template>
                     <span md-highlight-text="comic">{{item.titulo}}</span>
@@ -37,23 +45,19 @@
                     No se encontrado el cómic "{{comic}}"".
                 </md-not-found>
             </md-autocomplete>
-
-
-
         </div>
 
-        <div style="background: lightgreen; padding: 10px; border-radius: 5px; font-size: 15px; cursor: pointer"
-            ng-click="busquedaAvanzada($event)" >Búsqueda Avanzada</div>
 
-        <button class="btn btn-secondary" style="margin-left: 5px" ng-click="recargar()"><i class="fas fa-redo-alt"></i></button>
+        <div class="col-sm-auto col-md-auto align-self-center justify-content-end">
+            <div style="background: lightgreen; padding: 10px; border-radius: 5px; font-size: 15px; cursor: pointer; display: inline-block"
+                ng-click="busquedaAvanzada($event)">Búsqueda Avanzada
+            </div>
 
-        <div class="col-sm-auto col-md-auto ml-auto align-self-center">
-            Selecciona RPP:
+            <button class="btn btn-secondary" style="margin-left: 5px; display: inline-block; padding: 11px; font-size: 15px"
+                ng-click="recargar()"><i class="fas fa-redo-alt"></i></button>
         </div>
-        <div class="col-sm-2 col-md-2 align-self-center" style="width:200px;">
-            <select class="form-control" ng-change="update()" ng-model="rpp" ng-options="value for value in select">
-            </select>
-        </div>
+
+
     </div>
 
 
@@ -87,9 +91,24 @@
     <div class="grid-container" ng-show="!errorBusqueda">
         <div class="grid-item" ng-repeat="fila in ajaxDataProductos | filter:comic" style="text-align: center;" title="{{fila.titulo}}">
             <div class="portada" style="background: url('images/{{fila.foto}}');" ng-style="estiloComic" ng-class="{'desactivado': fila.existencias == 0 }">
-                <div class="vistaCuadrado1">
+
+                <div ng-if="fila.descuento != 0">
+                    <img src="images/etiqueta.png" alt="etiqueta" width="80px" style="margin-left: 80%; display: inline">
+                    <p style="color:white; font-size: 24px; transform: rotate(10deg);display: inline-block; margin-top: -30%; margin-right: -100%">{{fila.descuento}}
+                        %</p>
+                    <a href="user/comic/view/{{fila.id}}" style="color: white;">
+                        <div class="vistaCuadrado1" style="margin: -20% 18% 0% !important">
+                            VISTA RÁPIDA
+                        </div>
+                    </a>
+                </div>
+
+
+                <div ng-if="fila.descuento == 0">
                     <a href="user/comic/view/{{fila.id}}" style="color: white">
-                        VISTA RÁPIDA
+                        <div class="vistaCuadrado1">
+                            VISTA RÁPIDA
+                        </div>
                     </a>
                 </div>
             </div>

@@ -16,10 +16,11 @@
                 <h3>Géneros</h3>
                 <div layout="row" layout-wrap="" flex="">
                     <div flex="30" ng-repeat="fila in Generos track by $index">
-                        <md-checkbox ng-checked="exists(fila.id,selectedGenero)" ng-click="toggle(fila.id,selectedGenero)" ng-init="checked=true">
+                        <md-checkbox ng-checked="exists(fila.id,selectedGenero)" ng-click="toggle(fila.id,selectedGenero)"
+                            ng-init="checked=true">
                             {{ fila.desc }} <span ng-if="exists(fila.id,selectedGenero)"></span>
                         </md-checkbox>
-                  
+
                     </div>
                 </div>
 
@@ -42,6 +43,14 @@
 
                     </div>
                 </div>
+
+                <h3>Descuento</h3>
+                <div layout="row" layout-wrap="" flex="">
+                    <md-radio-group ng-model="descuento">
+                        <md-radio-button value="1" ng-click="descuento()"> SÍ </md-radio-button>
+                        <md-radio-button value="0" ng-click="descuento()">NO</md-radio-button>
+                    </md-radio-group>
+                </div>                   
             </div>
         </md-dialog-content>
 

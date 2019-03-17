@@ -154,15 +154,11 @@ md-checkbox.md-default-theme:not([disabled]).md-primary.md-checked .md-icon, md-
 }
 
 .md-scroll-mask {
-    z-index: 0 !important;
+    z-index: -20 !important;
 }
 
 
 
-
-@media (max-width: 760px) {
-    .desaparece {}
-}
 
 @media (max-width: 1200px) {
     .desaparece {

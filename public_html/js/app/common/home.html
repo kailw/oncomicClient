@@ -110,7 +110,12 @@
                                         ng-if="fila.descuento !== 0">
                                         <div style="background: url('images/{{fila.foto}}');" ng-style="estiloComic"
                                             class="portada">
-                                            <a href="user/comic/view/{{fila.id}}" style="color: white">
+                                            <span ng-if="fila.descuento != 0">
+                                                <img src="images/etiqueta.png" alt="etiqueta" width="80px" style="margin-left: 64%;">
+                                                <p style="color:white; font-size: 24px; transform: rotate(10deg);display: inline-block; margin-top: -40%; margin-left: 50%">{{fila.descuento}}%</p>
+                                            </span>
+
+                                            <a href="user/comic/view/{{fila.id}}" style="color: white;">
                                                 <div class="vistaCuadrado1">
                                                     VISTA RÁPIDA
                                                 </div>
