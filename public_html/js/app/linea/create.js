@@ -15,7 +15,7 @@ moduleLinea.controller('lineaCreateController', ['$scope', '$http', '$location',
             var json = {
                 id: null,
                 cantidad: $scope.cantidad,
-                id_producto: $scope.ajaxDatoProducto.id,
+                id_comic: $scope.ajaxDatoProducto.id,
                 id_factura: $routeParams.id
             };
             
@@ -46,7 +46,7 @@ moduleLinea.controller('lineaCreateController', ['$scope', '$http', '$location',
             if (consulta) {
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:8081/oncomic/json?ob=producto&op=get&id=' + $scope.ajaxDatoProducto.id
+                    url: 'http://localhost:8081/oncomic/json?ob=comic&op=get&id=' + $scope.ajaxDatoProducto.id
                 }).then(function (response) {
                     $scope.ajaxDatoProducto = response.data.message;
                     if ($scope.ajaxDatoProducto !== null) {

@@ -451,6 +451,7 @@ moduleComic.controller('comicPlistUsuarioController', ['$scope', '$http', '$loca
                 $scope.status = response.status;
                 $scope.ajaxDataProductos = response.data.message || 'Request failed';
             });
+            $scope.errorBusqueda = false;
         }
 
         $scope.isActive = toolService.isActive;

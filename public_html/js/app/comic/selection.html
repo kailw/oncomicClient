@@ -46,31 +46,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </th>
+                        </th>                       
                         <th>
                             <div class="row">
                                 <div class="col-12">
                                     <p>
-                                        Código
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="c.ordena('codigo', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="c.ordena('codigo', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        Descripción
+                                        Título
                                     </p>
                                 </div>
                                 <div class="col-12">
@@ -122,44 +103,8 @@
                                 </div>
                             </div>
                         </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        Foto
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="c.ordena('foto', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="c.ordena('foto', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
-                        <th>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>
-                                        Tipo producto
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <button type="button" class="btn btn-light" ng-click="c.ordena('id_tipoProducto', 'asc')">
-                                            <i class="fas fa-long-arrow-alt-up"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-light" ng-click="c.ordena('id_tipoProducto', 'desc')">
-                                            <i class="fas fa-long-arrow-alt-down"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </th>
+                       
+                        
 
                         <th>
                             Selección
@@ -167,18 +112,16 @@
                     </tr>
                     <tr ng-repeat="fila in c.data">
                         <td>{{fila.id}}</td>
-                        <td>{{fila.codigo}}</td>
-                        <td>{{fila.desc}}</td>
+                        <td>{{fila.titulo}}</td>
                         <td>{{fila.existencias}}</td>
                         <td>{{fila.precio}}</td>
-                        <td>{{fila.foto}}</td>
                         <td>
-                            <a href="tipoproducto/view/{{fila.obj_tipoProducto.id}}">{{fila.obj_tipoProducto.desc}}</a>
+                           {{fila.obj_comic.desc}}
                         </td>
                         <td>
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group">
-                                    <a class="btn btn-default btn-xs" ng-click="c.save(fila.id, fila.desc)" data-dismiss="modal">
+                                    <a class="btn btn-default btn-xs" ng-click="c.save(fila.id, fila.titulo)" data-dismiss="modal">
                                         <i class="fa fa-reply" aria-hidden="true"></i>
                                     </a>
                                 </div>

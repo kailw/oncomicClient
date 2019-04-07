@@ -23,7 +23,7 @@ function cController($http) {
         self.page = p;
         $http({
             method: 'GET',
-            url: 'json?ob=' + self.ob + '&op=getcount'
+            url: 'http://localhost:8081/oncomic/json?ob=' + self.ob + '&op=getcount'
         }).then(function (response) {
             self.status = response.status;
             self.ajaxDataUsuariosNumber = response.data.message;
@@ -39,7 +39,7 @@ function cController($http) {
 
         $http({
             method: 'GET',
-            url: 'json?ob=' + self.ob + '&op=getpage&rpp=' + self.rpp + '&page=' + self.page + self.orderURLServidor
+            url: 'http://localhost:8081/oncomic/json?ob=' + self.ob + '&op=getpage&rpp=' + self.rpp + '&page=' + self.page + self.orderURLServidor
         }).then(function (response) {
             self.status = response.status;
             self.data = response.data.message;
@@ -73,7 +73,7 @@ function cController($http) {
         $http({
             method: "GET",
             withCredential: true,
-            url: "json?ob=tipousuario&op=getpage&rpp=10&page=1"
+            url: "http://localhost:8081/oncomic/json?ob=tipousuario&op=getpage&rpp=10&page=1"
         }).then(function (response) {
             self.status = response.status;
             self.data = response.data.message;
