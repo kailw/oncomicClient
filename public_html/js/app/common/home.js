@@ -20,7 +20,7 @@ moduleCommon.controller('homeController', ['$scope', '$location', 'toolService',
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob1 + '&op=getpagex&campo=destacado&id=1&rpp=10&page=1'
+            url: 'http://localhost:8081/oncomic/json?ob=' + $scope.ob1 + '&op=getpagex&campo=destacado&id=1&rpp=20&page=1'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataComicDestacados = response.data.message;

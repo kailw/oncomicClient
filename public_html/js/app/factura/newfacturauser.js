@@ -24,7 +24,7 @@ moduleFactura.controller('facturaNewUserController', ['$scope', '$http', '$route
             $http({
                 method: 'GET',
                 withCredentials: true,
-                url: '/json?ob=factura&op=create',
+                url: 'http://localhost:8081/oncomic/json?ob=factura&op=create',
                 params: {json: JSON.stringify(json)}
             }).then(function (response) {
                 $scope.status = response.status;
